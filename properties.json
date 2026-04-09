@@ -1,0 +1,389 @@
+[
+  {
+    "id": "prop-001",
+    "slug": "shankarpally-12acres",
+    "status": "active",
+    "badge": "Featured",
+    "title": "Shankarpally Growth Corridor",
+    "subtitle": "Premium Mixed-Use Land — HMDA Approved",
+    "location": "Shankarpally Road, Hyderabad",
+    "district": "Rangareddy",
+    "state": "Telangana",
+    "coordinates": { "lat": 17.4065, "lng": 78.2673 },
+    "description": "Nestled within the premium growth corridor of Eastern Hyderabad, this 12.4-acre parcel offers rare flexibility — suited for residential development, commercial expansion, warehouse logistics, or agricultural leasing. The property is freehold, clear-title, and fully approved under HMDA jurisdiction.",
+    "description2": "Surrounded by IT parks, arterial roads, and upcoming metro connectivity, this is not merely land — it is a strategic position in one of India's fastest-appreciating urban corridors.",
+    "specs": {
+      "totalArea": "12.4 Acres",
+      "areaInSqYards": 53764,
+      "surveyNo": "204/B/1",
+      "zoning": "Mixed Use",
+      "title": "Freehold",
+      "roadAccess": "60 ft NH",
+      "water": "HMWSSB",
+      "approval": "HMDA & RERA"
+    },
+    "features": [
+      "HMDA & RERA Approved — full regulatory compliance",
+      "Four-lane access road with dedicated entry points",
+      "Underground electrical grid installed across perimeter",
+      "Bore wells + HMWSSB municipal water connection",
+      "Perimeter compound wall with CCTV surveillance",
+      "Drainage & stormwater management in place",
+      "Metro Phase III station within 1.2 km (2026 target)",
+      "Clear encumbrance certificate — zero disputes",
+      "Agricultural conversion certificate available",
+      "Dedicated boundary demarcation & survey report"
+    ],
+    "gallery": [
+      { "url": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80", "label": "Aerial Overview" },
+      { "url": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&q=80", "label": "East Facade" },
+      { "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=80", "label": "Landscape" },
+      { "url": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=500&q=80", "label": "Site View" },
+      { "url": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80", "label": "Boundary" }
+    ],
+    "heroImage": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1800&q=80",
+    "heroStats": [
+      { "value": "12.4", "label": "Acres Total" },
+      { "value": "₹8.2Cr", "label": "Starting Price" },
+      { "value": "340%", "label": "10Y Appreciation" }
+    ],
+    "proximity": [
+      { "icon": "🏢", "title": "IT Corridor", "detail": "HITEC City & Financial District — 18 km. Upcoming SEZ within 5 km radius." },
+      { "icon": "✈️", "title": "Airport", "detail": "Rajiv Gandhi International Airport — 22 km via ORR, under 30 minutes." },
+      { "icon": "🚇", "title": "Metro Phase III", "detail": "Proposed station at 1.2 km — expected operational 2026 Q3." },
+      { "icon": "🏫", "title": "Social Infrastructure", "detail": "3 international schools, 2 hospitals, premium malls within 8 km." },
+      { "icon": "🛣️", "title": "ORR Connectivity", "detail": "Direct access to Outer Ring Road — 4 km. Full city connectivity." }
+    ],
+    "reasons": [
+      { "title": "Metro Effect", "text": "Properties within 2 km of metro stations have appreciated 180–220% in comparable Hyderabad corridors. Phase III arrival locks in a 3–5 year appreciation window." },
+      { "title": "Supply Scarcity", "text": "Only 11 parcels of 10+ acres with freehold title remain in this micro-market. No new supply pipeline. Scarcity is the fundamental driver of premium land value." },
+      { "title": "Mixed-Use Flexibility", "text": "The mixed-use zoning enables residential, commercial, or warehouse development without conversion delays. Four viable strategies mean your exit options are never constrained." },
+      { "title": "Zero Legal Risk", "text": "Legal due diligence completed — EC dating back 60 years, mutation records clear, no litigation, no attachment orders. You invest with verified certainty." },
+      { "title": "Institutional Interest", "text": "Two Tier-1 developers and a Singapore-based REIT have already expressed acquisition interest. Institutional demand signals are the most reliable indicator of future valuation." }
+    ],
+    "reviews": [
+      {
+        "type": "Legal Review",
+        "text": "After a thorough examination of the title chain spanning six decades, I confirm this property is entirely free from encumbrances, litigation, or disputed ownership. The survey, EC, and mutation records are in impeccable order.",
+        "reviewer": "Suresh Reddy",
+        "role": "Senior Advocate, Hyderabad High Court — 28 years in property law",
+        "initials": "SR"
+      },
+      {
+        "type": "Banker's Assessment",
+        "text": "This property qualifies for up to 70% LTV financing through our institutional lending program. The collateral value is strong, the title is unimpeachable, and growth projections justify both construction and acquisition loan structures.",
+        "reviewer": "Priya Krishnamurti",
+        "role": "VP — Real Estate Finance, HDFC Bank Hyderabad",
+        "initials": "PK"
+      }
+    ],
+    "priceTrends": {
+      "historical": [
+        { "year": 2015, "price": 1800 },
+        { "year": 2017, "price": 2400 },
+        { "year": 2019, "price": 3100 },
+        { "year": 2021, "price": 4200 },
+        { "year": 2023, "price": 5400 },
+        { "year": 2025, "price": 6200 }
+      ],
+      "projected": [
+        { "year": 2025, "price": 6200 },
+        { "year": 2027, "price": 8500 },
+        { "year": 2029, "price": 11000 },
+        { "year": 2031, "price": 14500 },
+        { "year": 2033, "price": 18000 },
+        { "year": 2035, "price": 21000 }
+      ],
+      "unit": "₹ per sq yard"
+    },
+    "buyingOptions": {
+      "bidding": {
+        "enabled": true,
+        "startingPrice": 82000000,
+        "startingPriceLabel": "₹8,20,00,000",
+        "auctionDate": "August 15, 2026 at 11:00 AM IST",
+        "depositAmount": "₹25L",
+        "refundPercent": 70,
+        "currentBidders": 47,
+        "highestBid": "₹9.6 Cr",
+        "countdownHours": 14,
+        "countdownMinutes": 22,
+        "countdownSeconds": 8
+      },
+      "fixedSale": {
+        "enabled": true,
+        "areaAcres": 12.4,
+        "areaSqYards": 53764,
+        "ratePerSqYard": 6200,
+        "totalPrice": "₹33.3 Cr",
+        "minPurchaseAcres": 2,
+        "minPurchasePrice": "₹5.4 Cr",
+        "fullDiscountPercent": 3.5
+      },
+      "development": {
+        "enabled": true,
+        "revenueSplit": "55:45",
+        "splitLabel": "Owner : Developer",
+        "terms": [
+          "Revenue split negotiated upfront (typically 55:45 Owner:Developer)",
+          "Registered JDA with sub-registrar — full legal protection",
+          "Construction timeline locked by milestone schedule",
+          "Independent project management oversight included",
+          "Escrow account for all financial flows"
+        ]
+      },
+      "lease": {
+        "enabled": true,
+        "types": [
+          { "icon": "🏢", "label": "Commercial", "desc": "Offices, retail plazas, hospitality development on long-term lease basis", "priceRange": "₹12–18L/mo" },
+          { "icon": "📦", "label": "Warehouse / Logistics", "desc": "Cold chain, e-commerce fulfilment, industrial storage — 3PL leases", "priceRange": "₹8–14L/mo" },
+          { "icon": "🌾", "label": "Agricultural", "desc": "Farming, horticulture, or agri-tech operations with long-term leases", "priceRange": "₹3–6L/mo" }
+        ]
+      }
+    }
+  },
+  {
+    "id": "prop-002",
+    "slug": "kokapet-villa-plots",
+    "status": "active",
+    "badge": "New Listing",
+    "title": "Kokapet Financial District Plots",
+    "subtitle": "Premium Villa Plots — RERA Registered",
+    "location": "Kokapet, Hyderabad",
+    "district": "Rangareddy",
+    "state": "Telangana",
+    "coordinates": { "lat": 17.4156, "lng": 78.3240 },
+    "description": "Strategically located adjacent to the Financial District and HITEC City, these premium villa plots offer the rarest opportunity in Hyderabad's most coveted address. Fully demarcated, RERA-registered, and ready for immediate construction.",
+    "description2": "With frontage on the 100-ft road and panoramic views of the Financial District skyline, these plots are favoured by HNIs, NRIs, and institutional investors alike.",
+    "specs": {
+      "totalArea": "8.2 Acres",
+      "areaInSqYards": 35568,
+      "surveyNo": "117/A",
+      "zoning": "Residential",
+      "title": "Freehold",
+      "roadAccess": "100 ft Road",
+      "water": "HMWSSB + Borewell",
+      "approval": "RERA Registered"
+    },
+    "features": [
+      "RERA Registered — LP No. P02400007842",
+      "100 ft road frontage — premium accessibility",
+      "24/7 gated security with biometric access",
+      "Underground utilities — electricity, gas, telecom",
+      "Clubhouse, swimming pool & gym pre-built",
+      "Landscaped avenues with heritage trees",
+      "Smart home pre-wiring in all plots",
+      "EC clean for 75 years",
+      "Rainwater harvesting & solar grid",
+      "Vastu-compliant plot orientations"
+    ],
+    "gallery": [
+      { "url": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80", "label": "Plot Overview" },
+      { "url": "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500&q=80", "label": "Road Frontage" },
+      { "url": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=500&q=80", "label": "Clubhouse" },
+      { "url": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=500&q=80", "label": "Landscape" },
+      { "url": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&q=80", "label": "Amenities" }
+    ],
+    "heroImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&q=80",
+    "heroStats": [
+      { "value": "8.2", "label": "Acres Total" },
+      { "value": "₹4.8Cr", "label": "Starting Price" },
+      { "value": "280%", "label": "5Y Appreciation" }
+    ],
+    "proximity": [
+      { "icon": "🏦", "title": "Financial District", "detail": "Direct adjacency — 0.8 km to Goldman Sachs, Deloitte & KPMG campuses." },
+      { "icon": "🛍️", "title": "Lulu Mall", "detail": "2.5 km — Hyderabad's largest retail and entertainment destination." },
+      { "icon": "🏫", "title": "International Schools", "detail": "Oakridge & Chirec International Schools within 3 km radius." },
+      { "icon": "🏥", "title": "Healthcare", "detail": "AIG, Care & Medicover Hospitals — all within 5 km." },
+      { "icon": "🚘", "title": "ORR Junction", "detail": "Nearest ORR exit — 1.2 km. Airport reach: 25 minutes." }
+    ],
+    "reasons": [
+      { "title": "Zero-to-Build Ready", "text": "Fully demarcated plots with all approvals in place. No waiting period — break ground from day one with zero regulatory friction." },
+      { "title": "Address Premium", "text": "Kokapet–Financial District is Hyderabad's fastest appreciating micro-market. The address itself commands a premium resale multiplier." },
+      { "title": "NRI Demand Surge", "text": "Over 62% of recent transactions in this corridor are NRI-driven. Dollar-denominated buyers are creating sustained price support." },
+      { "title": "Amenity Advantage", "text": "Clubhouse, pool, gym, and landscaping already built. These are not promises — they are delivered assets that immediately justify premium pricing." },
+      { "title": "Exit Flexibility", "text": "Resell as a plot, build and sell as a villa, or lease. Three distinct exit strategies protect your capital across any market cycle." }
+    ],
+    "reviews": [
+      {
+        "type": "Legal Review",
+        "text": "RERA registration and EC verification are complete. The title is clean, the layout approvals are in order, and there are no pending dues or encumbrances. I have reviewed over 200 Hyderabad properties — this is among the cleanest I've certified.",
+        "reviewer": "Anitha Varma",
+        "role": "Property Law Specialist, Hyderabad — 22 years experience",
+        "initials": "AV"
+      },
+      {
+        "type": "Banker's Assessment",
+        "text": "Given the RERA registration, address value, and demonstrated appreciation curve, we are comfortable offering up to 75% LTV. This is the most competitive financing we offer for any plot product in Hyderabad.",
+        "reviewer": "Kiran Naidu",
+        "role": "VP Real Estate Lending, Axis Bank Hyderabad",
+        "initials": "KN"
+      }
+    ],
+    "priceTrends": {
+      "historical": [
+        { "year": 2015, "price": 3200 },
+        { "year": 2017, "price": 4500 },
+        { "year": 2019, "price": 6800 },
+        { "year": 2021, "price": 9200 },
+        { "year": 2023, "price": 13500 },
+        { "year": 2025, "price": 18000 }
+      ],
+      "projected": [
+        { "year": 2025, "price": 18000 },
+        { "year": 2027, "price": 24000 },
+        { "year": 2029, "price": 31000 },
+        { "year": 2031, "price": 40000 },
+        { "year": 2033, "price": 50000 },
+        { "year": 2035, "price": 62000 }
+      ],
+      "unit": "₹ per sq yard"
+    },
+    "buyingOptions": {
+      "bidding": { "enabled": false },
+      "fixedSale": {
+        "enabled": true,
+        "areaAcres": 8.2,
+        "areaSqYards": 35568,
+        "ratePerSqYard": 18000,
+        "totalPrice": "₹64 Cr",
+        "minPurchaseAcres": 0.5,
+        "minPurchasePrice": "₹4.8 Cr",
+        "fullDiscountPercent": 2.5
+      },
+      "development": { "enabled": false },
+      "lease": {
+        "enabled": true,
+        "types": [
+          { "icon": "🏡", "label": "Villa Rental", "desc": "Luxury villa rental — fully furnished options available", "priceRange": "₹2.5–4L/mo" },
+          { "icon": "🏢", "label": "Corporate Lease", "desc": "Corporate guest house or exec accommodation", "priceRange": "₹3–5L/mo" }
+        ]
+      }
+    }
+  },
+  {
+    "id": "prop-003",
+    "slug": "adibatla-industrial-land",
+    "status": "coming_soon",
+    "badge": "Coming Soon",
+    "title": "Adibatla Aerospace & Industrial",
+    "subtitle": "Industrial & Warehouse Land — 25 Acres",
+    "location": "Adibatla, Hyderabad",
+    "district": "Rangareddy",
+    "state": "Telangana",
+    "coordinates": { "lat": 17.3088, "lng": 78.6260 },
+    "description": "Adjacent to the Adibatla Aerospace & Defence SEZ — home to Boeing, Tata Advanced Systems, and DRDO — this 25-acre industrial parcel represents a once-in-a-decade opportunity to position capital in India's defence manufacturing corridor.",
+    "description2": "The Government of Telangana's Industrial Policy 2025 designates this zone as priority industrial land with guaranteed power supply, dedicated water line, and road widening already sanctioned.",
+    "specs": {
+      "totalArea": "25 Acres",
+      "areaInSqYards": 121000,
+      "surveyNo": "88/C/4",
+      "zoning": "Industrial / SEZ Adjacent",
+      "title": "Freehold",
+      "roadAccess": "80 ft Industrial Road",
+      "water": "TSIIC Dedicated Supply",
+      "approval": "TSIIC Cleared"
+    },
+    "features": [
+      "Adjacent to Adibatla Aerospace SEZ",
+      "TSIIC (Telangana State Industrial Infrastructure) cleared",
+      "33 KV dedicated power substation on-site",
+      "80 ft industrial road with heavy vehicle access",
+      "10 ML/day TSIIC water allocation",
+      "ETP & STP infrastructure ready",
+      "Direct rail freight corridor connectivity (2027)",
+      "Customs bonded warehouse eligibility",
+      "Ready for aerospace, pharma, or logistics use",
+      "Effortless conversion to SEZ sub-zone"
+    ],
+    "gallery": [
+      { "url": "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=800&q=80", "label": "Industrial Zone" },
+      { "url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&q=80", "label": "Road Access" },
+      { "url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&q=80", "label": "Aerial View" },
+      { "url": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&q=80", "label": "Infrastructure" },
+      { "url": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&q=80", "label": "Power Grid" }
+    ],
+    "heroImage": "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1800&q=80",
+    "heroStats": [
+      { "value": "25", "label": "Acres Total" },
+      { "value": "₹18Cr", "label": "Est. Price" },
+      { "value": "SEZ", "label": "Zone Adjacent" }
+    ],
+    "proximity": [
+      { "icon": "✈️", "title": "Boeing India", "detail": "Boeing India Pvt Ltd facility — 3.2 km direct road access." },
+      { "icon": "🛡️", "title": "DRDO Campus", "detail": "Defence Research & Development Organisation — 4 km." },
+      { "icon": "🚂", "title": "Rail Freight", "detail": "Proposed dedicated freight corridor station — 6 km (2027)." },
+      { "icon": "🛣️", "title": "ORR Access", "detail": "Outer Ring Road junction — 8 km, connectivity to all city nodes." },
+      { "icon": "⚡", "title": "Power Infrastructure", "detail": "33 KV dedicated substation — uninterrupted industrial supply." }
+    ],
+    "reasons": [
+      { "title": "Defence Corridor", "text": "The Adibatla–Fab City corridor is being positioned as India's answer to Bangalore's defence aerospace cluster. Government capex of ₹4,200 Cr committed in this zone." },
+      { "title": "Anchor Tenants Nearby", "text": "Boeing, Tata Advanced Systems, Mahindra Defence and L&T are already operational neighbours. Anchor tenants elevate lease rates and land values for adjacent parcels." },
+      { "title": "Industrial Policy Incentives", "text": "Telangana Industrial Policy 2025 provides tax incentives, power subsidies, and fast-track clearances specifically for this zone." },
+      { "title": "Rail + Road + Air", "text": "Tri-modal logistics connectivity — ORR road, upcoming freight rail, and proximity to cargo terminal at RGIA. No other parcel in this range offers this stack." },
+      { "title": "Lease Yield", "text": "Industrial lease yields in adjacent TSIIC zones are running at 9–12% annually — among the strongest in any asset class in Telangana." }
+    ],
+    "reviews": [
+      {
+        "type": "Legal Review",
+        "text": "TSIIC clearance has been verified and the title is clean. Industrial zoning is confirmed and there are no pending litigation matters. This is among the best-documented industrial parcels I've reviewed.",
+        "reviewer": "Venkat Prasad",
+        "role": "Industrial Property Advocate, Hyderabad — 19 years",
+        "initials": "VP"
+      },
+      {
+        "type": "Banker's Assessment",
+        "text": "Industrial land with TSIIC backing and SEZ adjacency qualifies for specialised infrastructure financing at competitive rates. We project strong LTV support given the committed government infrastructure spend in this corridor.",
+        "reviewer": "Madhavi Latha",
+        "role": "Head — Institutional Lending, SBI Hyderabad",
+        "initials": "ML"
+      }
+    ],
+    "priceTrends": {
+      "historical": [
+        { "year": 2015, "price": 800 },
+        { "year": 2017, "price": 1100 },
+        { "year": 2019, "price": 1600 },
+        { "year": 2021, "price": 2400 },
+        { "year": 2023, "price": 3800 },
+        { "year": 2025, "price": 5200 }
+      ],
+      "projected": [
+        { "year": 2025, "price": 5200 },
+        { "year": 2027, "price": 8000 },
+        { "year": 2029, "price": 12000 },
+        { "year": 2031, "price": 17000 },
+        { "year": 2033, "price": 23000 },
+        { "year": 2035, "price": 30000 }
+      ],
+      "unit": "₹ per sq yard"
+    },
+    "buyingOptions": {
+      "bidding": { "enabled": false },
+      "fixedSale": {
+        "enabled": true,
+        "areaAcres": 25,
+        "areaSqYards": 121000,
+        "ratePerSqYard": 5200,
+        "totalPrice": "₹62.9 Cr",
+        "minPurchaseAcres": 5,
+        "minPurchasePrice": "₹12.6 Cr",
+        "fullDiscountPercent": 4
+      },
+      "development": { "enabled": true, "revenueSplit": "50:50", "splitLabel": "Owner : Developer", "terms": [
+        "Revenue split negotiated upfront (50:50 for industrial JDA)",
+        "TSIIC registered development agreement",
+        "Government fast-track approval support included",
+        "Milestone-based construction payment schedule",
+        "Escrow account for all financial flows"
+      ]},
+      "lease": {
+        "enabled": true,
+        "types": [
+          { "icon": "🏭", "label": "Manufacturing", "desc": "Heavy / light manufacturing with dedicated power and water", "priceRange": "₹18–28L/mo" },
+          { "icon": "📦", "label": "Warehouse / 3PL", "desc": "Bonded or open warehousing, cold chain, e-commerce fulfilment", "priceRange": "₹12–20L/mo" }
+        ]
+      }
+    }
+  }
+]
