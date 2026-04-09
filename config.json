@@ -1,0 +1,48 @@
+{
+  "site": {
+    "name": "HAVEN",
+    "tagline": "Estates",
+    "fullName": "HAVEN Estates",
+    "description": "A curated sanctuary for discerning investors. Exclusive land parcels. Multiple acquisition pathways.",
+    "logoStyle": "text",
+    "logoIcon": "◆",
+    "year": "2026"
+  },
+  "branding": {
+    "colorGold": "#C9A84C",
+    "colorDark": "#0A0A0A",
+    "colorAccent": "#8B1A1A",
+    "fontDisplay": "Cormorant Garamond",
+    "fontBody": "Montserrat"
+  },
+  "contact": {
+    "phone": "+91 98765 43210",
+    "email": "invest@havenestates.in",
+    "office": "Banjara Hills, Hyderabad — 500034",
+    "whatsapp": "919876543210"
+  },
+  "community": {
+    "accessModel": "Invitation + Annual Subscription",
+    "subscriptionPrice": "25000",
+    "subscriptionCurrency": "₹",
+    "subscriptionLabel": "Annual Membership",
+    "invitationLabel": "By Invitation",
+    "memberCount": "312",
+    "tagline": "Private Investment Community · Members Only"
+  },
+  "googleSheets": {
+    "scriptUrl": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec",
+    "sheetName": "Registrations"
+  },
+  "admin": {
+    "passwordHash": "haven2026"
+  },
+  "nav": [
+    { "label": "Gallery",   "href": "#gallery" },
+    { "label": "Overview",  "href": "#overview" },
+    { "label": "Location",  "href": "#location" },
+    { "label": "Trends",    "href": "#trends" },
+    { "label": "Acquire",   "href": "#buying-options" },
+    { "label": "Join",      "href": "#register" }
+  ]
+}
