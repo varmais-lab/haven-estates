@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Haven Estates</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#C9A84C;--gold-light:#E8C97A;--dark:#0A0A0A;--dark-2:#111111;--dark-3:#1A1A1A;--dark-4:#222222;--dark-5:#2A2A2A;--text:#E8E0D0;--text-dim:#9A9080;--text-muted:#5A5248;--green:#40916C;--red:#e05555;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--dark);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;}
+  ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--gold);}
+  input,select{font-family:'Montserrat',sans-serif;}
+
+  /* LOGIN */
+  #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:radial-gradient(ellipse at center,rgba(201,168,76,0.06) 0%,var(--dark) 70%);}
+  .login-box{background:var(--dark-2);border:1px solid rgba(201,168,76,0.15);padding:4rem;width:420px;text-align:center;}
+  .login-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold);letter-spacing:0.3em;margin-bottom:0.5rem;}
+  .login-logo span{font-style:italic;color:var(--text);}
+  .login-title{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3rem;}
+  .login-input{width:100%;background:var(--dark-3);border:1px solid rgba(201,168,76,0.2);color:var(--text);padding:1rem 1.2rem;font-size:0.85rem;outline:none;text-align:center;letter-spacing:0.3em;margin-bottom:1rem;transition:border-color 0.3s;}
+  .login-input:focus{border-color:var(--gold);}
+  .login-btn{width:100%;padding:1rem;background:var(--gold);border:none;color:var(--dark);font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:background 0.3s;}
+  .login-btn:hover{background:var(--gold-light);}
+  .login-error{font-size:0.7rem;color:var(--red);margin-top:0.8rem;display:none;}
+
+  /* DASHBOARD */
+  #dashboard{display:none;}
+  nav{background:rgba(10,10,10,0.97);border-bottom:1px solid rgba(201,168,76,0.15);padding:0 3rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);letter-spacing:0.3em;}
+  .nav-logo span{font-style:italic;color:var(--text);}
+  .nav-badge{font-size:0.58rem;letter-spacing:0.2em;background:rgba(201,168,76,0.1);color:var(--gold);padding:0.3rem 0.8rem;border:1px solid rgba(201,168,76,0.2);}
+  .nav-right{display:flex;gap:1rem;align-items:center;}
+  .nav-link{color:var(--text-dim);text-decoration:none;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:color 0.3s;}
+  .nav-link:hover{color:var(--gold);}
+
+  /* LAYOUT */
+  .admin-body{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 64px);}
+  .sidebar{background:var(--dark-2);border-right:1px solid rgba(255,255,255,0.04);padding:2rem 0;}
+  .sidebar-section{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);padding:0 1.5rem;margin-bottom:0.8rem;margin-top:1.5rem;}
+  .sidebar-link{display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1.5rem;font-size:0.7rem;letter-spacing:0.08em;color:var(--text-dim);cursor:pointer;transition:all 0.2s;border-left:2px solid transparent;}
+  .sidebar-link:hover{color:var(--text);background:rgba(255,255,255,0.02);}
+  .sidebar-link.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,0.05);}
+  .sidebar-link .icon{width:18px;text-align:center;}
+  .sidebar-count{margin-left:auto;background:rgba(201,168,76,0.12);color:var(--gold);font-size:0.58rem;padding:0.15rem 0.5rem;border-radius:10px;}
+
+  /* MAIN */
+  .main-content{padding:2.5rem 3rem;}
+  .page-section{display:none;}
+  .page-section.active{display:block;}
+  .page-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;}
+  .page-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;}
+  .page-title em{font-style:italic;color:var(--gold-light);}
+  .page-sub{font-size:0.68rem;color:var(--text-muted);margin-top:0.4rem;letter-spacing:0.08em;}
+
+  /* KPI CARDS */
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:2.5rem;}
+  .kpi-card{background:var(--dark-2);padding:1.8rem;border-bottom:2px solid rgba(201,168,76,0.15);}
+  .kpi-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.8rem;}
+  .kpi-value{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold);}
+  .kpi-sub{font-size:0.65rem;color:var(--text-dim);margin-top:0.3rem;}
+
+  /* FILTERS BAR */
+  .filters-bar{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1.5rem;padding:1.2rem;background:var(--dark-2);border:1px solid rgba(255,255,255,0.04);}
+  .filter-input{background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);color:var(--text);padding:0.6rem 1rem;font-size:0.72rem;outline:none;transition:border-color 0.3s;min-width:180px;}
+  .filter-input:focus{border-color:var(--gold);}
+  .filter-select{appearance:none;cursor:pointer;min-width:150px;}
+  .filter-select option{background:var(--dark-3);}
+  .filter-label{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);}
+  .btn-sm{padding:0.6rem 1.2rem;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all 0.3s;}
+  .btn-sm-gold{background:var(--gold);color:var(--dark);border:none;font-weight:600;}
+  .btn-sm-gold:hover{background:var(--gold-light);}
+  .btn-sm-outline{background:transparent;color:var(--text-dim);border:1px solid rgba(255,255,255,0.12);}
+  .btn-sm-outline:hover{border-color:var(--gold);color:var(--gold);}
+  .result-count{margin-left:auto;font-size:0.65rem;color:var(--text-muted);}
+
+  /* TABLE */
+  .table-wrap{background:var(--dark-2);border:1px solid rgba(255,255,255,0.04);overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;}
+  thead{background:var(--dark-3);border-bottom:1px solid rgba(201,168,76,0.15);}
+  th{padding:0.9rem 1.2rem;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);text-align:left;white-space:nowrap;cursor:pointer;user-select:none;}
+  th:hover{color:var(--gold);}
+  th .sort-icon{margin-left:0.3rem;opacity:0.4;}
+  th.sorted .sort-icon{opacity:1;color:var(--gold);}
+  td{padding:1rem 1.2rem;font-size:0.74rem;color:var(--text-dim);border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:middle;}
+  tr:hover td{background:rgba(255,255,255,0.015);color:var(--text);}
+  .td-name{color:var(--text);font-weight:400;}
+  .td-gold{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:0.95rem;}
+  .access-pill{font-size:0.58rem;letter-spacing:0.1em;padding:0.25rem 0.7rem;display:inline-block;}
+  .pill-invite{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.25);}
+  .pill-sub{background:rgba(64,145,108,0.1);color:var(--green);border:1px solid rgba(64,145,108,0.25);}
+  .status-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:0.5rem;}
+  .dot-new{background:#E8C97A;}
+  .dot-reviewed{background:var(--green);}
+  .dot-pending{background:#888;}
+  .action-btn{background:transparent;border:1px solid rgba(201,168,76,0.2);color:var(--gold);padding:0.3rem 0.7rem;font-size:0.6rem;letter-spacing:0.1em;cursor:pointer;transition:all 0.3s;}
+  .action-btn:hover{background:rgba(201,168,76,0.1);}
+  .no-data{text-align:center;padding:4rem;color:var(--text-muted);font-size:0.78rem;}
+
+  /* PROPERTY MANAGEMENT */
+  .prop-list{display:flex;flex-direction:column;gap:2px;}
+  .prop-row{display:grid;grid-template-columns:60px 1fr auto auto auto;gap:1.5rem;align-items:center;background:var(--dark-2);padding:1.2rem 1.5rem;border-left:3px solid transparent;transition:border-color 0.3s;}
+  .prop-row:hover{border-left-color:var(--gold);}
+  .prop-row-img{width:60px;height:44px;object-fit:cover;opacity:0.8;}
+  .prop-row-title{font-size:0.8rem;color:var(--text);}
+  .prop-row-sub{font-size:0.65rem;color:var(--text-dim);margin-top:0.2rem;}
+  .prop-status{font-size:0.58rem;letter-spacing:0.15em;padding:0.25rem 0.7rem;}
+  .status-active{background:rgba(64,145,108,0.1);color:var(--green);border:1px solid rgba(64,145,108,0.25);}
+  .status-soon{background:rgba(255,255,255,0.05);color:var(--text-dim);border:1px solid rgba(255,255,255,0.1);}
+  .prop-price{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);text-align:right;}
+
+  /* MODAL */
+  .modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:var(--dark-2);border:1px solid rgba(201,168,76,0.2);width:90%;max-width:640px;max-height:90vh;overflow-y:auto;padding:3rem;position:relative;}
+  .modal-close{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:var(--text-dim);font-size:1.2rem;cursor:pointer;}
+  .modal-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin-bottom:2rem;}
+  .modal-title em{font-style:italic;color:var(--gold);}
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .detail-item{padding:1rem;background:var(--dark-3);}
+  .detail-item label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:0.4rem;}
+  .detail-item p{font-size:0.8rem;color:var(--text);}
+  .detail-full{grid-column:1/-1;}
+
+  /* CHARTS */
+  .mini-charts{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:2rem;}
+  .mini-chart{background:var(--dark-2);padding:2rem;}
+  .mini-chart-title{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;}
+  .bar-chart{display:flex;flex-direction:column;gap:0.7rem;}
+  .bar-row{display:flex;align-items:center;gap:1rem;}
+  .bar-label{font-size:0.68rem;color:var(--text-dim);min-width:120px;}
+  .bar-track{flex:1;height:8px;background:var(--dark-5);}
+  .bar-fill{height:100%;background:var(--gold);transition:width 0.8s ease;}
+  .bar-count{font-size:0.65rem;color:var(--gold);min-width:24px;text-align:right;}
+
+  /* SETTINGS */
+  .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+  .setting-section{background:var(--dark-2);padding:2rem;border:1px solid rgba(255,255,255,0.04);}
+  .setting-section h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);margin-bottom:1.5rem;}
+  .setting-field{margin-bottom:1.2rem;}
+  .setting-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:0.5rem;}
+  .setting-input{width:100%;background:var(--dark-3);border:1px solid rgba(255,255,255,0.08);color:var(--text);padding:0.8rem 1rem;font-size:0.8rem;outline:none;transition:border-color 0.3s;}
+  .setting-input:focus{border-color:var(--gold);}
+  .save-btn{background:var(--gold);border:none;color:var(--dark);padding:0.8rem 2rem;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:background 0.3s;margin-top:1rem;}
+  .save-btn:hover{background:var(--gold-light);}
+
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .fade-in{animation:fadeIn 0.3s ease forwards;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">HAVEN <span>Admin</span></div>
+    <div class="login-title">Investment Community · Restricted Access</div>
+    <input type="password" class="login-input" id="pw-input" placeholder="• • • • • • • •" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Access Dashboard</button>
+    <div class="login-error" id="login-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <nav>
+    <div style="display:flex;align-items:center;gap:1.5rem">
+      <div class="nav-logo" id="nav-logo">HAVEN <span>Admin</span></div>
+      <span class="nav-badge">🔐 ADMIN</span>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="nav-link" target="_blank">View Site ↗</a>
+      <span class="nav-link" onclick="doLogout()">Logout</span>
+    </div>
+  </nav>
+
+  <div class="admin-body">
+    <div class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <div class="sidebar-link active" onclick="showPage('overview',this)"><span class="icon">📊</span> Overview</div>
+      <div class="sidebar-link" onclick="showPage('registrations',this)"><span class="icon">👥</span> Registrations <span class="sidebar-count" id="reg-count-badge">0</span></div>
+      <div class="sidebar-section">Content</div>
+      <div class="sidebar-link" onclick="showPage('properties',this)"><span class="icon">🏗️</span> Properties</div>
+      <div class="sidebar-section">System</div>
+      <div class="sidebar-link" onclick="showPage('settings',this)"><span class="icon">⚙️</span> Settings</div>
+      <div class="sidebar-link" onclick="showPage('sheets',this)"><span class="icon">📋</span> Google Sheets</div>
+    </div>
+
+    <div class="main-content">
+
+      <!-- OVERVIEW -->
+      <div class="page-section active" id="page-overview">
+        <div class="page-header">
+          <div><div class="page-title">Dashboard <em>Overview</em></div><div class="page-sub" id="overview-date">Loading...</div></div>
+          <button class="btn-sm btn-sm-outline" onclick="refreshAll()">↻ Refresh</button>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-card"><div class="kpi-label">Total Registrations</div><div class="kpi-value" id="kpi-total">0</div><div class="kpi-sub">All time</div></div>
+          <div class="kpi-card"><div class="kpi-label">Active Properties</div><div class="kpi-value" id="kpi-props">0</div><div class="kpi-sub">Live listings</div></div>
+          <div class="kpi-card"><div class="kpi-label">This Week</div><div class="kpi-value" id="kpi-week">0</div><div class="kpi-sub">New registrations</div></div>
+          <div class="kpi-card"><div class="kpi-label">Bidding Active</div><div class="kpi-value" id="kpi-bid">0</div><div class="kpi-sub">Properties with bidding</div></div>
+        </div>
+        <div class="mini-charts">
+          <div class="mini-chart">
+            <div class="mini-chart-title">Registrations by Profession</div>
+            <div class="bar-chart" id="chart-profession"></div>
+          </div>
+          <div class="mini-chart">
+            <div class="mini-chart-title">Registrations by Budget</div>
+            <div class="bar-chart" id="chart-budget"></div>
+          </div>
+          <div class="mini-chart">
+            <div class="mini-chart-title">Access Type Split</div>
+            <div class="bar-chart" id="chart-access"></div>
+          </div>
+          <div class="mini-chart">
+            <div class="mini-chart-title">Interest by Property</div>
+            <div class="bar-chart" id="chart-property"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REGISTRATIONS -->
+      <div class="page-section" id="page-registrations">
+        <div class="page-header">
+          <div><div class="page-title">Registered <em>Members</em></div><div class="page-sub">All submitted registration requests</div></div>
+          <button class="btn-sm btn-sm-gold" onclick="exportCSV()">↓ Export CSV</button>
+        </div>
+        <div class="filters-bar">
+          <span class="filter-label">Search:</span>
+          <input type="text" class="filter-input" id="search-input" placeholder="Name, email, city..." oninput="applyFilters()">
+          <select class="filter-input filter-select" id="filter-profession" onchange="applyFilters()">
+            <option value="">All Professions</option>
+            <option>Business Owner</option><option>Corporate Executive</option>
+            <option>Doctor / Healthcare</option><option>Legal / Finance</option>
+            <option>NRI / Overseas</option><option>Developer / Builder</option>
+            <option>Investor (Full-time)</option>
+          </select>
+          <select class="filter-input filter-select" id="filter-budget" onchange="applyFilters()">
+            <option value="">All Budgets</option>
+            <option>₹50L – ₹1 Crore</option><option>₹1 Cr – ₹5 Crore</option>
+            <option>₹5 Cr – ₹25 Crore</option><option>₹25 Crore+</option>
+          </select>
+          <select class="filter-input filter-select" id="filter-access" onchange="applyFilters()">
+            <option value="">All Access Types</option>
+            <option>By Invitation</option><option>Annual Subscription</option>
+          </select>
+          <button class="btn-sm btn-sm-outline" onclick="clearFilters()">Clear</button>
+          <span class="result-count" id="result-count">— records</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th onclick="sortBy('timestamp')">#<span class="sort-icon">↕</span></th>
+                <th onclick="sortBy('name')">Name<span class="sort-icon">↕</span></th>
+                <th onclick="sortBy('mobile')">Mobile</th>
+                <th onclick="sortBy('email')">Email</th>
+                <th onclick="sortBy('profession')">Profession<span class="sort-icon">↕</span></th>
+                <th onclick="sortBy('budget')">Budget<span class="sort-icon">↕</span></th>
+                <th onclick="sortBy('city')">City</th>
+                <th onclick="sortBy('accessType')">Access<span class="sort-icon">↕</span></th>
+                <th onclick="sortBy('propertyTitle')">Property<span class="sort-icon">↕</span></th>
+                <th onclick="sortBy('timestamp')">Date<span class="sort-icon">↕</span></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="reg-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PROPERTIES -->
+      <div class="page-section" id="page-properties">
+        <div class="page-header">
+          <div><div class="page-title">Property <em>Listings</em></div><div class="page-sub">Manage your property portfolio from properties.json</div></div>
+          <button class="btn-sm btn-sm-outline" onclick="window.open('index.html','_blank')">View Public Site ↗</button>
+        </div>
+        <div class="prop-list" id="prop-list"></div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="page-section" id="page-settings">
+        <div class="page-header">
+          <div><div class="page-title">Site <em>Settings</em></div><div class="page-sub">Edit config.json fields</div></div>
+        </div>
+        <div class="settings-grid">
+          <div class="setting-section">
+            <h3>Branding</h3>
+            <div class="setting-field"><label class="setting-label">Site Name</label><input class="setting-input" id="s-name" type="text"></div>
+            <div class="setting-field"><label class="setting-label">Tagline</label><input class="setting-input" id="s-tagline" type="text"></div>
+            <div class="setting-field"><label class="setting-label">Description</label><input class="setting-input" id="s-desc" type="text"></div>
+            <button class="save-btn" onclick="saveSettings()">Save Branding</button>
+          </div>
+          <div class="setting-section">
+            <h3>Community</h3>
+            <div class="setting-field"><label class="setting-label">Subscription Price</label><input class="setting-input" id="s-price" type="number"></div>
+            <div class="setting-field"><label class="setting-label">Member Count Display</label><input class="setting-input" id="s-members" type="number"></div>
+            <button class="save-btn" onclick="saveSettings()">Save Community</button>
+          </div>
+          <div class="setting-section">
+            <h3>Contact</h3>
+            <div class="setting-field"><label class="setting-label">Phone</label><input class="setting-input" id="s-phone" type="text"></div>
+            <div class="setting-field"><label class="setting-label">Email</label><input class="setting-input" id="s-email" type="email"></div>
+            <div class="setting-field"><label class="setting-label">Office Address</label><input class="setting-input" id="s-office" type="text"></div>
+            <button class="save-btn" onclick="saveSettings()">Save Contact</button>
+          </div>
+          <div class="setting-section">
+            <h3>Google Sheets</h3>
+            <div class="setting-field"><label class="setting-label">Script URL</label><input class="setting-input" id="s-script" type="url"></div>
+            <div class="setting-field"><label class="setting-label">Sheet Name</label><input class="setting-input" id="s-sheet" type="text"></div>
+            <button class="save-btn" onclick="testSheets()">Test Connection</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOOGLE SHEETS GUIDE -->
+      <div class="page-section" id="page-sheets">
+        <div class="page-header">
+          <div><div class="page-title">Google Sheets <em>Setup</em></div><div class="page-sub">Step-by-step connection guide</div></div>
+        </div>
+        <div style="max-width:700px;">
+          <div style="background:var(--dark-2);border:1px solid rgba(201,168,76,0.1);padding:2.5rem;margin-bottom:2px;">
+            <div style="font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Step 1 — Create Your Google Sheet</div>
+            <p style="font-size:0.8rem;color:var(--text-dim);line-height:1.9;margin-bottom:1rem;">Go to <strong style="color:var(--text)">sheets.google.com</strong> and create a new spreadsheet. Add these column headers in Row 1:</p>
+            <div style="background:var(--dark-4);padding:1rem;font-size:0.75rem;color:var(--gold);font-family:monospace;letter-spacing:0.05em;line-height:2">Timestamp | Name | Mobile | Email | Profession | Budget | Industry | City | AccessType | Interest | PropertyId | PropertyTitle</div>
+          </div>
+          <div style="background:var(--dark-2);border:1px solid rgba(201,168,76,0.1);padding:2.5rem;margin-bottom:2px;">
+            <div style="font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Step 2 — Create Apps Script</div>
+            <p style="font-size:0.8rem;color:var(--text-dim);line-height:1.9;margin-bottom:1rem;">In your sheet: <strong style="color:var(--text)">Extensions → Apps Script</strong>. Paste this code:</p>
+            <pre style="background:var(--dark-4);padding:1.5rem;font-size:0.72rem;color:#a0d8a0;overflow-x:auto;line-height:1.8">function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName('Registrations');
+  const data = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    data.timestamp, data.name, data.mobile, data.email,
+    data.profession, data.budget, data.industry, data.city,
+    data.accessType, data.interest, data.propertyId, data.propertyTitle
+  ]);
+  return ContentService
+    .createTextOutput(JSON.stringify({status:'success'}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doGet(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName('Registrations');
+  const data = sheet.getDataRange().getValues();
+  return ContentService
+    .createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+          </div>
+          <div style="background:var(--dark-2);border:1px solid rgba(201,168,76,0.1);padding:2.5rem;margin-bottom:2px;">
+            <div style="font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Step 3 — Deploy as Web App</div>
+            <p style="font-size:0.8rem;color:var(--text-dim);line-height:1.9;">Click <strong style="color:var(--text)">Deploy → New Deployment</strong>. Set type to <strong style="color:var(--text)">Web App</strong>. Execute as <strong style="color:var(--text)">Me</strong>. Access: <strong style="color:var(--text)">Anyone</strong>. Copy the deployment URL and paste it into <strong style="color:var(--gold)">config.json → googleSheets.scriptUrl</strong>.</p>
+          </div>
+          <div style="background:var(--dark-2);border:1px solid rgba(201,168,76,0.1);padding:2.5rem;">
+            <div style="font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Step 4 — Test & Go Live</div>
+            <p style="font-size:0.8rem;color:var(--text-dim);line-height:1.9;">Go to Settings tab above, enter your Script URL, and click <strong style="color:var(--text)">Test Connection</strong>. Once confirmed, all registration form submissions will appear in your Google Sheet within seconds.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detail-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Registration <em>Detail</em></div>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+let config={}, properties=[], registrations=[], filtered=[], sortField='timestamp', sortDir=-1;
+
+// ─── AUTH ─────────────────────────────────────────────────────
+async function doLogin(){
+  const pw = document.getElementById('pw-input').value;
+  const r = await fetch('config.json'); config = await r.json();
+  if(pw === config.admin.passwordHash){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    document.getElementById('nav-logo').innerHTML = `${config.site.name} <span>Admin</span>`;
+    init();
+  } else {
+    document.getElementById('login-error').style.display='block';
+    document.getElementById('pw-input').value='';
+  }
+}
+
+function doLogout(){
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('pw-input').value='';
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+async function init(){
+  document.getElementById('overview-date').textContent = new Date().toLocaleString('en-IN',{dateStyle:'full',timeStyle:'short'});
+  await loadProperties();
+  loadSampleRegistrations(); // Demo data — replace with Google Sheets fetch in production
+  loadSettings();
+}
+
+async function loadProperties(){
+  const r = await fetch('properties.json'); properties = await r.json();
+  document.getElementById('kpi-props').textContent = properties.filter(p=>p.status==='active').length;
+  document.getElementById('kpi-bid').textContent = properties.filter(p=>p.buyingOptions.bidding?.enabled).length;
+  renderPropList();
+}
+
+function loadSampleRegistrations(){
+  // Sample data — in production replace with fetch from your Google Sheets API
+  registrations = [
+    {timestamp:'2026-03-28T09:14:00Z',name:'Rajesh Kumar',mobile:'+91 98765 43210',email:'rajesh@techcorp.in',profession:'Business Owner',budget:'₹5 Cr – ₹25 Crore',industry:'IT Services',city:'Hyderabad',accessType:'By Invitation — I have a referral code',interest:'Looking to acquire minimum 3 acres for commercial development.',propertyId:'prop-001',propertyTitle:'Shankarpally Growth Corridor'},
+    {timestamp:'2026-03-29T11:30:00Z',name:'Priya Nair',mobile:'+91 87654 32109',email:'priya@nairhospitals.com',profession:'Doctor / Healthcare',budget:'₹1 Cr – ₹5 Crore',industry:'Healthcare',city:'Hyderabad',accessType:'Annual Subscription — ₹25,000/Annual Membership',interest:'Interested in leasing for medical facility expansion.',propertyId:'prop-001',propertyTitle:'Shankarpally Growth Corridor'},
+    {timestamp:'2026-03-30T14:22:00Z',name:'Arun Sharma',mobile:'+91 76543 21098',email:'arun@nri.com',profession:'NRI / Overseas',budget:'₹25 Crore+',industry:'Finance',city:'Dubai',accessType:'By Invitation — I have a referral code',interest:'Looking for full parcel acquisition or JDA.',propertyId:'prop-002',propertyTitle:'Kokapet Financial District Plots'},
+    {timestamp:'2026-04-01T08:05:00Z',name:'Suresh Rao',mobile:'+91 99887 76655',email:'suresh@constructra.in',profession:'Developer / Builder',budget:'₹25 Crore+',industry:'Real Estate Development',city:'Hyderabad',accessType:'Annual Subscription — ₹25,000/Annual Membership',interest:'JDA interest for residential development — 10+ acres.',propertyId:'prop-003',propertyTitle:'Adibatla Aerospace & Industrial'},
+    {timestamp:'2026-04-02T16:45:00Z',name:'Kavya Reddy',mobile:'+91 88776 65544',email:'kavya@reddy.family',profession:'Investor (Full-time)',budget:'₹5 Cr – ₹25 Crore',industry:'Investment',city:'Hyderabad',accessType:'By Invitation — I have a referral code',interest:'Portfolio diversification into land assets. Bidding option preferred.',propertyId:'prop-001',propertyTitle:'Shankarpally Growth Corridor'},
+    {timestamp:'2026-04-03T10:10:00Z',name:'Mohammed Faiz',mobile:'+91 77665 54433',email:'faiz@gulfventures.ae',profession:'NRI / Overseas',budget:'₹1 Cr – ₹5 Crore',industry:'Trade & Commerce',city:'Abu Dhabi',accessType:'Annual Subscription — ₹25,000/Annual Membership',interest:'Looking for fixed sale purchase of 2-3 acres.',propertyId:'prop-002',propertyTitle:'Kokapet Financial District Plots'},
+    {timestamp:'2026-04-04T13:55:00Z',name:'Anitha Verma',mobile:'+91 66554 43322',email:'anitha@legalfirm.in',profession:'Legal / Finance',budget:'₹50L – ₹1 Crore',industry:'Legal Services',city:'Bangalore',accessType:'By Invitation — I have a referral code',interest:'Research for client interested in industrial lease.',propertyId:'prop-003',propertyTitle:'Adibatla Aerospace & Industrial'},
+    {timestamp:'2026-04-05T09:30:00Z',name:'Vijay Krishnan',mobile:'+91 55443 32211',email:'vijay@pharmatech.in',profession:'Corporate Executive',budget:'₹5 Cr – ₹25 Crore',industry:'Pharmaceuticals',city:'Hyderabad',accessType:'Annual Subscription — ₹25,000/Annual Membership',interest:'Warehouse leasing for cold chain pharmaceutical logistics.',propertyId:'prop-003',propertyTitle:'Adibatla Aerospace & Industrial'},
+  ];
+  filtered = [...registrations];
+  updateKPIs(); renderTable(); renderCharts();
+  document.getElementById('reg-count-badge').textContent = registrations.length;
+}
+
+function updateKPIs(){
+  document.getElementById('kpi-total').textContent = registrations.length;
+  const weekAgo = Date.now() - 7*24*3600*1000;
+  document.getElementById('kpi-week').textContent = registrations.filter(r=>new Date(r.timestamp)>weekAgo).length;
+}
+
+// ─── TABLE ────────────────────────────────────────────────────
+function renderTable(){
+  document.getElementById('result-count').textContent = `${filtered.length} record${filtered.length!==1?'s':''}`;
+  const tbody = document.getElementById('reg-table-body');
+  if(!filtered.length){ tbody.innerHTML=`<tr><td colspan="11" class="no-data">No registrations match your filters.</td></tr>`; return; }
+  tbody.innerHTML = filtered.map((r,i)=>{
+    const isInvite = r.accessType.includes('Invitation');
+    const date = new Date(r.timestamp).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'});
+    return `<tr>
+      <td>${i+1}</td>
+      <td class="td-name">${r.name}</td>
+      <td>${r.mobile}</td>
+      <td style="font-size:0.68rem">${r.email}</td>
+      <td>${r.profession||'—'}</td>
+      <td class="td-gold">${r.budget||'—'}</td>
+      <td>${r.city||'—'}</td>
+      <td><span class="access-pill ${isInvite?'pill-invite':'pill-sub'}">${isInvite?'Invite':'Annual'}</span></td>
+      <td style="font-size:0.66rem">${r.propertyTitle||'—'}</td>
+      <td style="font-size:0.66rem">${date}</td>
+      <td><button class="action-btn" onclick="openDetail(${registrations.indexOf(r)})">View</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function applyFilters(){
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const prof = document.getElementById('filter-profession').value;
+  const bud = document.getElementById('filter-budget').value;
+  const acc = document.getElementById('filter-access').value;
+  filtered = registrations.filter(r=>{
+    const matchQ = !q || [r.name,r.email,r.city,r.industry].some(f=>(f||'').toLowerCase().includes(q));
+    const matchP = !prof || r.profession===prof;
+    const matchB = !bud || r.budget===bud;
+    const matchA = !acc || r.accessType.includes(acc);
+    return matchQ && matchP && matchB && matchA;
+  });
+  renderTable();
+}
+
+function clearFilters(){
+  ['search-input','filter-profession','filter-budget','filter-access'].forEach(id=>{ document.getElementById(id).value=''; });
+  filtered=[...registrations]; renderTable();
+}
+
+function sortBy(field){
+  if(sortField===field) sortDir*=-1; else { sortField=field; sortDir=1; }
+  filtered.sort((a,b)=>{
+    const va=a[field]||'', vb=b[field]||'';
+    return va<vb?-sortDir:va>vb?sortDir:0;
+  });
+  renderTable();
+}
+
+function openDetail(idx){
+  const r = registrations[idx];
+  document.getElementById('modal-content').innerHTML = `
+    <div class="detail-grid">
+      <div class="detail-item detail-full"><label>Full Name</label><p style="font-size:1rem;color:var(--gold)">${r.name}</p></div>
+      <div class="detail-item"><label>Mobile</label><p>${r.mobile}</p></div>
+      <div class="detail-item"><label>Email</label><p>${r.email}</p></div>
+      <div class="detail-item"><label>Profession</label><p>${r.profession||'—'}</p></div>
+      <div class="detail-item"><label>Industry</label><p>${r.industry||'—'}</p></div>
+      <div class="detail-item"><label>City</label><p>${r.city||'—'}</p></div>
+      <div class="detail-item"><label>Investment Budget</label><p style="color:var(--gold)">${r.budget||'—'}</p></div>
+      <div class="detail-item"><label>Access Type</label><p>${r.accessType}</p></div>
+      <div class="detail-item"><label>Property of Interest</label><p>${r.propertyTitle||'—'}</p></div>
+      <div class="detail-item"><label>Registered On</label><p>${new Date(r.timestamp).toLocaleString('en-IN')}</p></div>
+      <div class="detail-item detail-full"><label>Acquisition Interest / Notes</label><p style="line-height:1.8">${r.interest||'—'}</p></div>
+    </div>`;
+  document.getElementById('detail-modal').classList.add('open');
+}
+
+function closeModal(){ document.getElementById('detail-modal').classList.remove('open'); }
+
+// ─── CHARTS ───────────────────────────────────────────────────
+function renderCharts(){
+  renderBar('chart-profession', countBy('profession'));
+  renderBar('chart-budget', countBy('budget'));
+  renderBar('chart-access', countByAccess());
+  renderBar('chart-property', countBy('propertyTitle'));
+}
+
+function countBy(field){
+  const map={};
+  registrations.forEach(r=>{ const v=r[field]||'Unknown'; map[v]=(map[v]||0)+1; });
+  return Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,6);
+}
+
+function countByAccess(){
+  const inv=registrations.filter(r=>r.accessType.includes('Invitation')).length;
+  const sub=registrations.length-inv;
+  return [['By Invitation',inv],['Annual Subscription',sub]];
+}
+
+function renderBar(containerId, data){
+  const max = Math.max(...data.map(d=>d[1]),1);
+  document.getElementById(containerId).innerHTML = data.map(([label,count])=>`
+    <div class="bar-row">
+      <div class="bar-label" title="${label}">${label.length>18?label.substring(0,18)+'…':label}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(count/max*100).toFixed(0)}%"></div></div>
+      <div class="bar-count">${count}</div>
+    </div>`).join('');
+}
+
+// ─── PROPERTIES ───────────────────────────────────────────────
+function renderPropList(){
+  document.getElementById('prop-list').innerHTML = properties.map(p=>`
+    <div class="prop-row" onclick="window.open('property.html?id=${p.id}','_blank')">
+      <img class="prop-row-img" src="${p.gallery[0].url}" alt="${p.title}">
+      <div>
+        <div class="prop-row-title">${p.title}</div>
+        <div class="prop-row-sub">${p.location} · ${p.specs.totalArea}</div>
+      </div>
+      <span class="prop-status ${p.status==='active'?'status-active':'status-soon'}">${p.badge}</span>
+      <div class="prop-price">${p.buyingOptions.fixedSale?.totalPrice||p.heroStats[1].value}</div>
+      <button class="btn-sm btn-sm-outline" onclick="event.stopPropagation();window.open('property.html?id=${p.id}','_blank')">View →</button>
+    </div>`).join('');
+}
+
+// ─── SETTINGS ─────────────────────────────────────────────────
+function loadSettings(){
+  if(!config.site) return;
+  document.getElementById('s-name').value = config.site.name||'';
+  document.getElementById('s-tagline').value = config.site.tagline||'';
+  document.getElementById('s-desc').value = config.site.description||'';
+  document.getElementById('s-price').value = config.community.subscriptionPrice||'';
+  document.getElementById('s-members').value = config.community.memberCount||'';
+  document.getElementById('s-phone').value = config.contact.phone||'';
+  document.getElementById('s-email').value = config.contact.email||'';
+  document.getElementById('s-office').value = config.contact.office||'';
+  document.getElementById('s-script').value = config.googleSheets.scriptUrl||'';
+  document.getElementById('s-sheet').value = config.googleSheets.sheetName||'';
+}
+
+function saveSettings(){ alert('In production: settings would be saved to config.json via a backend. Changes shown here are read-only in this demo.'); }
+function testSheets(){ const url=document.getElementById('s-script').value; if(!url||url.includes('YOUR_SCRIPT_ID')){ alert('Please enter your actual Google Apps Script URL first.'); } else { alert('In production: this would test a live connection to your Google Sheet.'); } }
+
+// ─── EXPORT ───────────────────────────────────────────────────
+function exportCSV(){
+  const headers = ['Timestamp','Name','Mobile','Email','Profession','Budget','Industry','City','Access Type','Interest','Property ID','Property Title'];
+  const rows = filtered.map(r=>[r.timestamp,r.name,r.mobile,r.email,r.profession,r.budget,r.industry,r.city,r.accessType,r.interest,r.propertyId,r.propertyTitle]
+    .map(v=>`"${(v||'').replace(/"/g,'""')}"`).join(','));
+  const csv = [headers.join(','),...rows].join('\n');
+  const a=document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=`haven-registrations-${new Date().toISOString().split('T')[0]}.csv`; a.click();
+}
+
+function refreshAll(){ init(); }
+
+// ─── NAV ──────────────────────────────────────────────────────
+function showPage(id, el){
+  document.querySelectorAll('.page-section').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
