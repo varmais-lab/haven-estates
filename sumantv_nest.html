@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suman Nest | SumanTV Community-Powered Real Estate Ecosystem</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#060a17',
+                            900: '#0a1128',
+                            800: '#111c44',
+                            700: '#1b2b65',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        emerald: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Outfit', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #060a17;
+            color: #f1f5f9;
+        }
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(17, 28, 68, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(16, 26, 61, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5), 0 0 25px -5px rgba(245, 158, 11, 0.15);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #f59e0b, #d97706, #111c44) 1;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060a17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+        /* Custom Range Input */
+        input[type="range"] {
+            accent-color: #f59e0b;
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-amber-500 selection:text-navy-950 flex flex-col justify-between overflow-x-hidden">
+
+    <!-- TOP ANNOUNCEMENT BANNER -->
+    <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-navy-950 text-xs sm:text-sm font-semibold py-2 px-4 text-center flex items-center justify-center gap-2 relative z-50">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-black bg-navy-950 text-amber-400 mr-2 uppercase tracking-wide animate-pulse">Live Batch #18</span>
+        <span>Financial District 3BHK Cohort closing soon: <strong>88 of 100 serious buyer tokens locked!</strong></span>
+        <a href="#cohorts" class="underline decoration-navy-950 font-bold ml-2 hover:opacity-80">View Deal &rarr;</a>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20 text-navy-950 font-black text-xl font-display">
+                    SN
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-display font-black text-2xl tracking-tight text-white">SUMAN<span class="text-amber-500">NEST</span></span>
+                        <span class="text-[10px] bg-red-600 text-white font-bold px-1.5 py-0.5 rounded">TV</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 font-medium tracking-wide">COMMUNITY BUYING ECOSYSTEM</p>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#how-it-works" class="hover:text-amber-400 transition-colors">How It Works</a>
+                <a href="#cohorts" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    Group Batches
+                </a>
+                <a href="#landowner-hub" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+                    <i data-lucide="compass" class="w-4 h-4 text-amber-400"></i>
+                    Build on Land
+                </a>
+                <a href="#nextgen-hub" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i>
+                    Prefab & Containers
+                </a>
+                <a href="#materials-matrix" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+                    <i data-lucide="layers" class="w-4 h-4 text-amber-400"></i>
+                    Material Prices
+                </a>
+                <a href="#calculator" class="hover:text-amber-400 transition-colors">Savings Simulator</a>
+                <a href="#ecosystem" class="hover:text-amber-400 transition-colors">Builders & B2B</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="openModal('buyerModal')" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-amber-500 hover:bg-amber-400 text-navy-950 transition-all shadow-md shadow-amber-500/20 hover:scale-[1.02] active:scale-[0.98]">
+                    <i data-lucide="shield-check" class="w-4 h-4 mr-1.5"></i> Lock ₹10,000 Token
+                </button>
+                <button onclick="openModal('developerModal')" class="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-navy-800 hover:bg-navy-700 text-slate-200 border border-slate-700 transition-all">
+                    Partner Portal
+                </button>
+                <!-- Mobile Menu Trigger -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-navy-800 text-slate-300 hover:text-white" aria-label="Toggle menu">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-navy-900 px-5 py-4 space-y-3">
+            <a href="#how-it-works" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-amber-400 py-1">How It Works</a>
+            <a href="#cohorts" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-amber-400 py-1">Group Cohorts</a>
+            <a href="#landowner-hub" onclick="toggleMobileMenu()" class="block text-amber-300 hover:text-amber-400 py-1">Build on Your Land (Architect Plans)</a>
+            <a href="#nextgen-hub" onclick="toggleMobileMenu()" class="block text-emerald-300 hover:text-emerald-400 py-1">Next-Gen Prefab & Containers</a>
+            <a href="#materials-matrix" onclick="toggleMobileMenu()" class="block text-amber-400 hover:text-amber-300 py-1 font-semibold">Building Material Price Index (Live)</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-amber-400 py-1">Savings Simulator</a>
+            <a href="#ecosystem" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-amber-400 py-1">Builders & Vendors</a>
+            <a href="#authority" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-amber-400 py-1">Media & Trust</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="openModal('buyerModal'); toggleMobileMenu()" class="w-full py-2.5 rounded-xl text-sm font-semibold bg-amber-500 text-navy-950">
+                    Lock ₹10,000 Token
+                </button>
+                <button onclick="openModal('vendorModal'); toggleMobileMenu()" class="w-full py-2.5 rounded-xl text-sm font-semibold bg-navy-800 text-slate-300 border border-slate-700">
+                    Join as Vendor Partner
+                </button>
+            </div>
+        </div>
+    </header>
+                    <button onclick="openModal('demandModal')" class="px-6 py-3 rounded-xl text-sm font-bold bg-navy-800 hover:bg-navy-700 text-amber-400 border border-amber-500/30 whitespace-nowrap">
+                        Propose New Micro-Market +
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 1: BUILD ON YOUR LAND (ARCHITECTURAL & TURNKEY CONSTRUCTION HUB) -->
+    <section id="landowner-hub" class="py-20 relative bg-navy-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold mb-3 uppercase tracking-wider">
+                        <i data-lucide="compass" class="w-3.5 h-3.5"></i> Custom Landowner Hub
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-display text-white">
+                        Have Land? Build with Vetted Architects at Bulk Rates.
+                    </h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+                        Own an open plot? Don't pay exorbitant contractor markups. Browse pre-engineered, economical building plans by top certified engineers and procure Cement, Steel, and Brick at SumanTV bulk prices.
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0 flex gap-2">
+                    <button onclick="openModal('plotConsultModal')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 hover:bg-amber-400 text-navy-950 flex items-center gap-2 shadow-lg shadow-amber-500/20">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Request Plot Blueprint & BOQ
+                    </button>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE PLOT-TO-HOME ESTIMATOR TOOL -->
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-amber-500/20 mb-16 relative overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    
+                    <!-- Form Controls -->
+                    <div class="w-full lg:w-7/12 space-y-6">
+                        <div class="border-b border-white/10 pb-4">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Interactive BOQ Estimator</span>
+                            <h3 class="text-xl font-bold font-display text-white mt-1">Configure Your Plot & Estimate Turnkey Construction Cost</h3>
+                        </div>
+
+                        <!-- Plot Size Picker -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">1. Select Plot Size (Sq. Yards)</label>
+                            <div class="grid grid-cols-4 gap-2.5">
+                                <button type="button" onclick="setPlotSize(150, this)" class="plot-btn py-2.5 px-3 rounded-xl text-xs font-bold bg-navy-900 hover:bg-navy-800 border border-white/10 text-slate-200 transition-all">150 Sq.Yd</button>
+                                <button type="button" onclick="setPlotSize(200, this)" class="plot-btn py-2.5 px-3 rounded-xl text-xs font-bold bg-amber-500 text-navy-950 border border-amber-400 transition-all font-black">200 Sq.Yd</button>
+                                <button type="button" onclick="setPlotSize(300, this)" class="plot-btn py-2.5 px-3 rounded-xl text-xs font-bold bg-navy-900 hover:bg-navy-800 border border-white/10 text-slate-200 transition-all">300 Sq.Yd</button>
+                                <button type="button" onclick="setPlotSize(500, this)" class="plot-btn py-2.5 px-3 rounded-xl text-xs font-bold bg-navy-900 hover:bg-navy-800 border border-white/10 text-slate-200 transition-all">500 Sq.Yd</button>
+                            </div>
+                        </div>
+
+                        <!-- Structure & Facing -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">2. Structure Configuration</label>
+                                <select id="floorConfigSelect" onchange="recalculatePlotEstimate()" class="w-full bg-navy-900 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500">
+                                    <option value="1">Ground Floor Only (G+0)</option>
+                                    <option value="2" selected>G + 1 Independent Duplex</option>
+                                    <option value="3">G + 2 Independent Floors (Rental Income)</option>
+                                    <option value="4">G + 3 Modern Urban Villa</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">3. Plot Orientation (Vaastu)</label>
+                                <select class="w-full bg-navy-900 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500">
+                                    <option>East Facing (Param Vaastu)</option>
+                                    <option>North Facing (Kuber Corner)</option>
+                                    <option>West Facing (Contemporary Sun-shield)</option>
+                                    <option>South Facing (High Plinth Design)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Specification Package Tier -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">4. Construction Material Specification Tier</label>
+                            <div class="grid grid-cols-3 gap-2.5">
+                                <button type="button" onclick="setSpecTier(1450, 'Economical Pack', this)" class="spec-btn p-3 rounded-xl text-left bg-navy-900 border border-white/10 text-slate-300 hover:border-amber-500/40">
+                                    <div class="text-xs font-bold text-white">Smart Eco</div>
+                                    <div class="text-[11px] text-amber-400 font-mono mt-0.5">₹1,450 / sq.ft</div>
+                                    <div class="text-[9px] text-slate-400 mt-1">ACC/Bharathi + TMT 550D</div>
+                                </button>
+                                <button type="button" onclick="setSpecTier(1850, 'Premium Classic', this)" class="spec-btn p-3 rounded-xl text-left bg-amber-500/10 border-2 border-amber-500 text-white">
+                                    <div class="text-xs font-bold text-amber-400">Premium Living</div>
+                                    <div class="text-[11px] text-white font-mono mt-0.5">₹1,850 / sq.ft</div>
+                                    <div class="text-[9px] text-slate-300 mt-1">UltraTech + Teak wood + Jaquar</div>
+                                </button>
+                                <button type="button" onclick="setSpecTier(2300, 'Luxury Signature', this)" class="spec-btn p-3 rounded-xl text-left bg-navy-900 border border-white/10 text-slate-300 hover:border-amber-500/40">
+                                    <div class="text-xs font-bold text-white">Luxury Elite</div>
+                                    <div class="text-[11px] text-amber-400 font-mono mt-0.5">₹2,300 / sq.ft</div>
+                                    <div class="text-[9px] text-slate-400 mt-1">Italian Marble + Automation</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instant Estimate BOQ Card -->
+                    <div class="w-full lg:w-5/12 bg-navy-900/90 border border-amber-500/30 p-6 rounded-2xl">
+                        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                            <div>
+                                <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">Project BOQ Summary</span>
+                                <h4 id="estBuiltupDisplay" class="text-lg font-bold text-white">2,700 sq.ft Total Built-up</h4>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300">
+                                SumanTV Bulk Rates Applied
+                            </span>
+                        </div>
+
+                        <!-- Breakdown Rows -->
+                        <div class="mt-4 space-y-3 text-xs">
+                            <div class="flex justify-between items-center text-slate-300">
+                                <span>RCC Core (Cement, TMT Steel, Sand & RMC):</span>
+                                <span id="estRccCore" class="font-mono font-semibold text-white">₹22.40 Lakhs</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-300">
+                                <span>Masonry, Plastering & Red Brickwork:</span>
+                                <span id="estMasonry" class="font-mono font-semibold text-white">₹8.90 Lakhs</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-300">
+                                <span>Flooring, Electrical, Sanitary & Paints:</span>
+                                <span id="estFinishing" class="font-mono font-semibold text-white">₹13.20 Lakhs</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-300">
+                                <span>Architect Supervision & 3D Engineering Sign-off:</span>
+                                <span class="font-mono font-semibold text-emerald-400">Included (Free)</span>
+                            </div>
+                        </div>
+
+                        <!-- Total & Savings Display -->
+                        <div class="mt-6 pt-4 border-t border-white/10 bg-navy-950 p-4 rounded-xl">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <span class="text-xs text-slate-400">Standard Contractor Rack Rate:</span>
+                                <span id="estMarketCost" class="text-xs text-slate-400 line-through">₹59.40 Lakhs</span>
+                            </div>
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-xs text-amber-400 font-bold">Suman Nest Turnkey Budget:</span>
+                                <span id="estTurnkeyTotal" class="text-2xl font-black text-amber-400 font-display">₹49.95 Lakhs</span>
+                            </div>
+                            <div class="mt-2 pt-2 border-t border-white/10 flex justify-between text-xs text-emerald-400 font-semibold">
+                                <span>Your Collective Material Savings:</span>
+                                <span id="estCollectiveSaving">₹9.45 Lakhs Saved</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <button onclick="openModal('plotConsultModal')" class="w-full mt-5 py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-400 text-navy-950 text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20">
+                            <i data-lucide="check-circle" class="w-4 h-4"></i> Lock Architect & Collective Material Rates
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- VETTED ARCHITECTURAL BLUEPRINTS & ENGINEER PROPOSALS -->
+            <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h3 class="text-2xl font-bold font-display text-white">Verified Architectural Proposals for Landowners</h3>
+                        <p class="text-xs sm:text-sm text-slate-400">Curated, Vaastu-compliant project proposals with fixed BOQ costs and certified engineering drawings.</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs">
+                        <span class="text-slate-400">Architect Network:</span>
+                        <span class="px-2.5 py-1 rounded-md bg-navy-800 text-amber-400 border border-amber-500/30 font-semibold">Council of Architecture (COA) Approved</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Proposal 1 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="p-6">
+                            <!-- Architect Tag -->
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center font-bold text-amber-400 font-display text-sm">
+                                    VK
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-white flex items-center gap-1">
+                                        Ar. Vijay Karthik, M.Arch <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400">14 Yrs Exp • 120+ Telangana Projects</div>
+                                </div>
+                            </div>
+
+                            <span class="text-xs uppercase tracking-wider text-amber-400 font-semibold">Project Code #ARCH-200D</span>
+                            <h4 class="text-lg font-bold text-white font-display mt-0.5">The Pavilion Courtyard Duplex</h4>
+                            <p class="text-xs text-slate-400 mt-1">Designed for 200–250 Sq.Yd plots. 4-Bedroom modern villa with central skylight courtyard & double-height foyer.</p>
+
+                            <div class="mt-4 p-3 bg-navy-950 rounded-xl space-y-1.5 text-xs font-mono border border-white/5">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Built-Up Area:</span>
+                                    <span class="text-white font-bold">2,850 sq.ft</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Turnaround Time:</span>
+                                    <span class="text-amber-400">7.5 Months</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Estimated Turnkey Cost:</span>
+                                    <span class="text-white font-bold">₹51.3 Lakhs (@ ₹1,800/sft)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0">
+                            <button onclick="openModal('plotConsultModal')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-navy-800 hover:bg-navy-700 text-amber-400 border border-amber-500/30 flex items-center justify-center gap-2">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i> View Blueprints & Book Consultation
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Proposal 2 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center font-bold text-emerald-400 font-display text-sm">
+                                    SS
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-white flex items-center gap-1">
+                                        Er. Srinivas Sastry, Structural Lead <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400">IIT Madras Alum • High-Yield Rental Specialist</div>
+                                </div>
+                            </div>
+
+                            <span class="text-xs uppercase tracking-wider text-emerald-400 font-semibold">Project Code #ARCH-150R</span>
+                            <h4 class="text-lg font-bold text-white font-display mt-0.5">Dual-Income Smart Stilt + G+2</h4>
+                            <p class="text-xs text-slate-400 mt-1">Designed for 150 Sq.Yd urban plots. Ground parking + Two separate 2BHK rental units + 1 Penthouse suite.</p>
+
+                            <div class="mt-4 p-3 bg-navy-950 rounded-xl space-y-1.5 text-xs font-mono border border-white/5">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Built-Up Area:</span>
+                                    <span class="text-white font-bold">3,200 sq.ft</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Expected Rental Yield:</span>
+                                    <span class="text-emerald-400">₹65,000 / month</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Estimated Turnkey Cost:</span>
+                                    <span class="text-white font-bold">₹49.6 Lakhs (@ ₹1,550/sft)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0">
+                            <button onclick="openModal('plotConsultModal')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-navy-800 hover:bg-navy-700 text-emerald-400 border border-emerald-500/30 flex items-center justify-center gap-2">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i> View Blueprints & Book Consultation
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Proposal 3 -->
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between">
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center font-bold text-purple-400 font-display text-sm">
+                                    PR
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-white flex items-center gap-1">
+                                        Ar. Pratyusha Rao, Biophilic Design <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400">Sustainable Green Council Certified</div>
+                                </div>
+                            </div>
+
+                            <span class="text-xs uppercase tracking-wider text-purple-400 font-semibold">Project Code #ARCH-300F</span>
+                            <h4 class="text-lg font-bold text-white font-display mt-0.5">The Earth Brick Farmhouse Villa</h4>
+                            <p class="text-xs text-slate-400 mt-1">Designed for 300–500 Sq.Yd perimeter farm plots. Exposed terracotta bricks, passive cooling, solar-ready, wide verandahs.</p>
+
+                            <div class="mt-4 p-3 bg-navy-950 rounded-xl space-y-1.5 text-xs font-mono border border-white/5">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Built-Up Area:</span>
+                                    <span class="text-white font-bold">2,400 sq.ft</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Turnaround Time:</span>
+                                    <span class="text-amber-400">5.5 Months</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Estimated Turnkey Cost:</span>
+                                    <span class="text-white font-bold">₹44.4 Lakhs (@ ₹1,850/sft)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0">
+                            <button onclick="openModal('plotConsultModal')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-navy-800 hover:bg-navy-700 text-purple-400 border border-purple-500/30 flex items-center justify-center gap-2">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i> View Blueprints & Book Consultation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 2: NEXT-GEN & ALTERNATIVE LIVING HUB (CONTAINERS, PREFAB, MOBILE & GLAMPING) -->
+    <section id="nextgen-hub" class="py-20 relative bg-navy-900 border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold mb-3 uppercase tracking-wider">
+                        <i data-lucide="zap" class="w-3.5 h-3.5"></i> 0 to 45 Days Turnaround
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-display text-white">
+                        Next-Gen Living: Prefab, Shipping Containers & Glamping Homes
+                    </h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+                        Perfect for agricultural land, weekend getaways, farm retreats, rooftop penthouses, and eco-resorts. Factory built, zero wet-construction hassle, 100% relocatable.
+                    </p>
+                </div>
+                <!-- Category Switcher Buttons -->
+                <div class="flex items-center gap-2 mt-4 md:mt-0 overflow-x-auto pb-2 md:pb-0" id="nextGenFilterContainer">
+                    <button onclick="filterNextGen('all', this)" class="nextgen-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-navy-950 whitespace-nowrap">All Modern Types</button>
+                    <button onclick="filterNextGen('container', this)" class="nextgen-filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">Container Homes</button>
+                    <button onclick="filterNextGen('prefab', this)" class="nextgen-filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">LGSF Prefab</button>
+                    <button onclick="filterNextGen('mobile', this)" class="nextgen-filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">Mobile Homes</button>
+                    <button onclick="filterNextGen('tent', this)" class="nextgen-filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">Glamping Domes</button>
+                </div>
+            </div>
+
+            <!-- Alternative Homes Showcase Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="nextGenGrid">
+                
+                <!-- Item 1: Container Home -->
+                <div class="nextgen-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="container">
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 uppercase">Cortent Steel Chassis</span>
+                            <span class="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                                <i data-lucide="clock" class="w-3 h-3 text-emerald-400"></i> 40-Day Delivery
+                            </span>
+                        </div>
+                        <h4 class="text-base font-bold text-white font-display">40ft Luxury Studio Container Villa</h4>
+                        <p class="text-xs text-slate-400 mt-1">Thermal PUF insulated, panoramic double-glazed sliding glass, ensuite washroom & modular kitchenette.</p>
+                        
+                        <div class="mt-4 space-y-1.5 text-[11px] text-slate-300 border-t border-white/5 pt-3">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Usable Footprint:</span>
+                                <span class="font-bold text-white">320 sq.ft (Single Unit)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Lifespan:</span>
+                                <span class="text-white">35+ Years Rust-Proof</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Foundation Req:</span>
+                                <span class="text-emerald-400">Simple 6-Pillar Piers</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-navy-950/80 rounded-xl border border-white/5">
+                            <div class="text-[10px] text-slate-400">Turnkey Installed Price:</div>
+                            <div class="text-xl font-black text-amber-400 font-display">₹11.80 Lakhs</div>
+                            <div class="text-[10px] text-emerald-400 mt-0.5">SumanTV Bulk Batch: ₹9.90 Lakhs</div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="openNextGenModal('40ft Luxury Studio Container Villa', '₹9.90 Lakhs', 'Container')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-navy-950 flex items-center justify-center gap-1.5">
+                            <i data-lucide="package-check" class="w-3.5 h-3.5"></i> Customise & Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2: Prefab LGSF Villa -->
+                <div class="nextgen-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="prefab">
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 uppercase">Light Gauge Steel (LGSF)</span>
+                            <span class="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                                <i data-lucide="clock" class="w-3 h-3 text-emerald-400"></i> 60-Day Delivery
+                            </span>
+                        </div>
+                        <h4 class="text-base font-bold text-white font-display">2BHK Modular Prefab Farmhouse</h4>
+                        <p class="text-xs text-slate-400 mt-1">Galvanized zinc steel framing, fiber-cement weatherboards, rockwool thermal & acoustic core insulation.</p>
+                        
+                        <div class="mt-4 space-y-1.5 text-[11px] text-slate-300 border-t border-white/5 pt-3">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Usable Footprint:</span>
+                                <span class="font-bold text-white">850 sq.ft 2BHK</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Seismic & Wind:</span>
+                                <span class="text-white">Zone 4 & 180 km/h Rated</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Green Rating:</span>
+                                <span class="text-emerald-400">Zero Water Wet-Curing</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-navy-950/80 rounded-xl border border-white/5">
+                            <div class="text-[10px] text-slate-400">Turnkey Installed Price:</div>
+                            <div class="text-xl font-black text-amber-400 font-display">₹21.50 Lakhs</div>
+                            <div class="text-[10px] text-emerald-400 mt-0.5">SumanTV Bulk Batch: ₹17.80 Lakhs</div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="openNextGenModal('2BHK Modular Prefab Farmhouse', '₹17.80 Lakhs', 'Prefab LGSF')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-navy-950 flex items-center justify-center gap-1.5">
+                            <i data-lucide="package-check" class="w-3.5 h-3.5"></i> Customise & Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3: Mobile Home on Wheels -->
+                <div class="nextgen-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="mobile">
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 uppercase">Towable / On-Wheels</span>
+                            <span class="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                                <i data-lucide="clock" class="w-3 h-3 text-emerald-400"></i> 25-Day Delivery
+                            </span>
+                        </div>
+                        <h4 class="text-base font-bold text-white font-display">The Wanderer Expandable Tiny Home</h4>
+                        <p class="text-xs text-slate-400 mt-1">Automated slide-out wings, solar battery backup, bio-digester toilet. Legal on agricultural land without building permits.</p>
+                        
+                        <div class="mt-4 space-y-1.5 text-[11px] text-slate-300 border-t border-white/5 pt-3">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Expanded Size:</span>
+                                <span class="font-bold text-white">420 sq.ft Living Area</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Mobility:</span>
+                                <span class="text-white">Dual-Axle Heavy Chassis</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Legal Benefit:</span>
+                                <span class="text-emerald-400">No RERA/Municipality Hassle</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-navy-950/80 rounded-xl border border-white/5">
+                            <div class="text-[10px] text-slate-400">Turnkey Installed Price:</div>
+                            <div class="text-xl font-black text-amber-400 font-display">₹15.20 Lakhs</div>
+                            <div class="text-[10px] text-emerald-400 mt-0.5">SumanTV Bulk Batch: ₹12.90 Lakhs</div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="openNextGenModal('The Wanderer Expandable Tiny Home', '₹12.90 Lakhs', 'Mobile Home')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-navy-950 flex items-center justify-center gap-1.5">
+                            <i data-lucide="package-check" class="w-3.5 h-3.5"></i> Customise & Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4: Geodesic Glamping Tent Home -->
+                <div class="nextgen-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="tent">
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-pink-500/20 text-pink-300 uppercase">Glamping & Eco-Resort</span>
+                            <span class="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                                <i data-lucide="clock" class="w-3 h-3 text-emerald-400"></i> 15-Day Delivery
+                            </span>
+                        </div>
+                        <h4 class="text-base font-bold text-white font-display">Geodesic Eco Dome & Safari Suite</h4>
+                        <p class="text-xs text-slate-400 mt-1">Multi-layer insulated tensile PVC canvas, bay window view, timber deck, luxury bath pod. High ROI for farmland rentals.</p>
+                        
+                        <div class="mt-4 space-y-1.5 text-[11px] text-slate-300 border-t border-white/5 pt-3">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Diameter & Area:</span>
+                                <span class="font-bold text-white">7m Dia (410 sq.ft)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Weather-Proofing:</span>
+                                <span class="text-white">100% Monsoon & Heat Shield</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Airbnb Yield:</span>
+                                <span class="text-emerald-400">₹6,000 to ₹10,000 / Night</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-navy-950/80 rounded-xl border border-white/5">
+                            <div class="text-[10px] text-slate-400">Turnkey Installed Price:</div>
+                            <div class="text-xl font-black text-amber-400 font-display">₹7.50 Lakhs</div>
+                            <div class="text-[10px] text-emerald-400 mt-0.5">SumanTV Bulk Batch: ₹5.95 Lakhs</div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="openNextGenModal('Geodesic Eco Dome & Safari Suite', '₹5.95 Lakhs', 'Glamping Tent')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-navy-950 flex items-center justify-center gap-1.5">
+                            <i data-lucide="package-check" class="w-3.5 h-3.5"></i> Customise & Order
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COMPREHENSIVE TECHNOLOGY COMPARISON TABLE -->
+            <div class="mt-16 glass-panel p-6 sm:p-8 rounded-2xl border border-white/10 overflow-hidden">
+                <div class="mb-6">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Decision Matrix</span>
+                    <h3 class="text-xl font-bold font-display text-white mt-1">Construction Methodology Comparison: Cost vs Time vs Flexibility</h3>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm text-slate-300">
+                        <thead class="bg-navy-950 text-slate-400 uppercase text-[10px] tracking-wider border-b border-white/10 font-mono">
+                            <tr>
+                                <th class="p-3 sm:p-4">Living Solution</th>
+                                <th class="p-3 sm:p-4">Turnaround Speed</th>
+                                <th class="p-3 sm:p-4">Avg Per-SqFt Cost</th>
+                                <th class="p-3 sm:p-4">Permits Needed?</th>
+                                <th class="p-3 sm:p-4">Relocatable?</th>
+                                <th class="p-3 sm:p-4">Best Suited For</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="p-3 sm:p-4 font-bold text-white flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-slate-400"></span> Traditional Brick/RCC
+                                </td>
+                                <td class="p-3 sm:p-4 text-amber-400 font-semibold">8 to 14 Months</td>
+                                <td class="p-3 sm:p-4 font-mono">₹1,800 - ₹2,400/sft</td>
+                                <td class="p-3 sm:p-4 text-slate-300">Mandatory Municipality / Gram Panchayat</td>
+                                <td class="p-3 sm:p-4 text-red-400">Permanent (No)</td>
+                                <td class="p-3 sm:p-4 text-slate-300">Urban primary home on owned residential plot</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors bg-amber-500/5">
+                                <td class="p-3 sm:p-4 font-bold text-amber-400 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-amber-400"></span> LGSF Prefabricated
+                                </td>
+                                <td class="p-3 sm:p-4 text-emerald-400 font-semibold">45 to 60 Days</td>
+                                <td class="p-3 sm:p-4 font-mono">₹1,450 - ₹1,850/sft</td>
+                                <td class="p-3 sm:p-4 text-slate-300">Simplified light structure</td>
+                                <td class="p-3 sm:p-4 text-amber-300">Semi-Modular (Disassemble)</td>
+                                <td class="p-3 sm:p-4 text-slate-300">Farmhouses, guest houses, rooftop penthouses</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors bg-emerald-500/5">
+                                <td class="p-3 sm:p-4 font-bold text-emerald-400 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Container Studio Villa
+                                </td>
+                                <td class="p-3 sm:p-4 text-emerald-400 font-semibold">30 to 45 Days</td>
+                                <td class="p-3 sm:p-4 font-mono">₹1,200 - ₹1,600/sft</td>
+                                <td class="p-3 sm:p-4 text-slate-300">Zero permit in agricultural/farm plots</td>
+                                <td class="p-3 sm:p-4 text-emerald-400 font-semibold">100% Crane Liftable</td>
+                                <td class="p-3 sm:p-4 text-slate-300">Remote retreats, weekend stay, site offices</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="p-3 sm:p-4 font-bold text-white flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-pink-400"></span> Glamping Geodesic Dome
+                                </td>
+                                <td class="p-3 sm:p-4 text-emerald-400 font-semibold">15 to 20 Days</td>
+                                <td class="p-3 sm:p-4 font-mono">₹850 - ₹1,200/sft</td>
+                                <td class="p-3 sm:p-4 text-slate-300">No building permit required (Temporary)</td>
+                                <td class="p-3 sm:p-4 text-emerald-400 font-semibold">Fast Pack & Relocate</td>
+                                <td class="p-3 sm:p-4 text-slate-300">Eco-tourism resorts, Airbnb rentals, hill farms</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 3: REAL-TIME BUILDING MATERIALS PRICE INDEX & BRAND MATRIX -->
+    <section id="materials-matrix" class="py-20 relative bg-navy-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header & Daily Mandi Ticker -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold mb-3 uppercase tracking-wider">
+                        <i data-lucide="layers" class="w-3.5 h-3.5"></i> Daily Wholesale Mandi Benchmark • TG & AP
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-display text-white">
+                        Building Materials Price Index & Brand Matrix
+                    </h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
+                        Know the true factory gate price before pouring concrete. We pool hundreds of independent home builders and developers to deliver Tier-1 corporate discounts directly to your site.
+                    </p>
+                </div>
+                
+                <div class="flex items-center gap-2">
+                    <button onclick="openModal('materialQuoteModal')" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 hover:bg-amber-400 text-navy-950 flex items-center gap-2 shadow-lg shadow-amber-500/20">
+                        <i data-lucide="calculator" class="w-4 h-4"></i> Calculate Consolidated Material Bill
+                    </button>
+                </div>
+            </div>
+
+            <!-- LIVE MANDI COMMODITY TICKER -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10">
+                <div class="glass-panel p-3.5 rounded-xl border border-white/10 flex items-center justify-between">
+                    <div>
+                        <div class="text-[11px] text-slate-400 uppercase font-semibold">OPC 53 Cement (Avg)</div>
+                        <div class="text-base sm:text-lg font-bold text-white font-mono mt-0.5">₹345 <span class="text-xs font-normal text-slate-400">/bag</span></div>
+                        <div class="text-[10px] text-emerald-400 font-medium">Suman Pool: ₹295 (-₹50)</div>
+                    </div>
+                    <span class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs flex items-center font-bold">
+                        <i data-lucide="trending-down" class="w-3.5 h-3.5 mr-0.5"></i> 2.1%
+                    </span>
+                </div>
+
+                <div class="glass-panel p-3.5 rounded-xl border border-white/10 flex items-center justify-between">
+                    <div>
+                        <div class="text-[11px] text-slate-400 uppercase font-semibold">TMT 550D Steel (Avg)</div>
+                        <div class="text-base sm:text-lg font-bold text-white font-mono mt-0.5">₹56,200 <span class="text-xs font-normal text-slate-400">/Tonne</span></div>
+                        <div class="text-[10px] text-emerald-400 font-medium">Suman Pool: ₹51,800 (-₹4.4k)</div>
+                    </div>
+                    <span class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs flex items-center font-bold">
+                        <i data-lucide="trending-down" class="w-3.5 h-3.5 mr-0.5"></i> 1.8%
+                    </span>
+                </div>
+
+                <div class="glass-panel p-3.5 rounded-xl border border-white/10 flex items-center justify-between">
+                    <div>
+                        <div class="text-[11px] text-slate-400 uppercase font-semibold">Robo M-Sand (Crushed)</div>
+                        <div class="text-base sm:text-lg font-bold text-white font-mono mt-0.5">₹1,450 <span class="text-xs font-normal text-slate-400">/Ton</span></div>
+                        <div class="text-[10px] text-emerald-400 font-medium">Suman Pool: ₹1,200 (-₹250)</div>
+                    </div>
+                    <span class="p-2 rounded-lg bg-amber-500/10 text-amber-400 text-xs flex items-center font-bold">
+                        <i data-lucide="minus" class="w-3.5 h-3.5 mr-0.5"></i> 0.0%
+                    </span>
+                </div>
+
+                <div class="glass-panel p-3.5 rounded-xl border border-white/10 flex items-center justify-between">
+                    <div>
+                        <div class="text-[11px] text-slate-400 uppercase font-semibold">Red Clay Brick (Class 1)</div>
+                        <div class="text-base sm:text-lg font-bold text-white font-mono mt-0.5">₹9.20 <span class="text-xs font-normal text-slate-400">/Piece</span></div>
+                        <div class="text-[10px] text-emerald-400 font-medium">Suman Pool: ₹7.60 (-₹1.60)</div>
+                    </div>
+                    <span class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs flex items-center font-bold">
+                        <i data-lucide="trending-down" class="w-3.5 h-3.5 mr-0.5"></i> 3.2%
+                    </span>
+                </div>
+            </div>
+
+            <!-- Material Category Navigation Tabs & Search -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <!-- Tabs -->
+                <div class="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="materialTabs">
+                    <button onclick="switchMaterialTab('cement', this)" class="mat-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-navy-950 whitespace-nowrap shadow-md">
+                        Cement (8 Brands)
+                    </button>
+                    <button onclick="switchMaterialTab('steel', this)" class="mat-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">
+                        TMT Steel / Iron
+                    </button>
+                    <button onclick="switchMaterialTab('sand', this)" class="mat-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">
+                        Sand & Aggregates
+                    </button>
+                    <button onclick="switchMaterialTab('bricks', this)" class="mat-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">
+                        Bricks & AAC Blocks
+                    </button>
+                    <button onclick="switchMaterialTab('rmc', this)" class="mat-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">
+                        Ready Mix (RMC)
+                    </button>
+                    <button onclick="switchMaterialTab('allied', this)" class="mat-tab-btn px-4 py-2 rounded-xl text-xs font-medium bg-navy-800 text-slate-300 hover:bg-navy-700 whitespace-nowrap">
+                        Pipes, Wiring & Paint
+                    </button>
+                </div>
+
+                <!-- Instant Brand Search -->
+                <div class="relative w-full md:w-64">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" id="materialSearchInput" onkeyup="filterMaterialTable()" placeholder="Search brand or grade..." class="w-full bg-navy-900 border border-white/10 rounded-xl pl-9 pr-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+
+            <!-- TABLE CONTAINER -->
+            <div class="glass-panel rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm text-slate-300" id="materialsTable">
+                        <thead class="bg-navy-950 text-slate-400 uppercase text-[10px] tracking-wider border-b border-white/10 font-mono">
+                            <tr>
+                                <th class="p-3 sm:p-4">Brand & Grade</th>
+                                <th class="p-3 sm:p-4">Specification / Class</th>
+                                <th class="p-3 sm:p-4">Retail Mandi Rate</th>
+                                <th class="p-3 sm:p-4 text-amber-400">Suman Collective Price</th>
+                                <th class="p-3 sm:p-4 text-emerald-400">Your Bulk Margin Saved</th>
+                                <th class="p-3 sm:p-4 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5" id="materialTableBody">
+                            <!-- Injected dynamically via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Bottom Procurement Guarantee Banner -->
+                <div class="bg-navy-900/90 border-t border-white/10 p-4 px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-2 text-slate-400">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                        <span>All rates are <strong>GST Paid, Factory-Direct Dispatches</strong> with Manufacturer Test Certificates (MTC). Minimum order quantities apply for free site unloading.</span>
+                    </div>
+                    <button onclick="openModal('materialQuoteModal')" class="font-bold text-amber-400 hover:text-amber-300 underline whitespace-nowrap">
+                        Request Project Indent &rarr;
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HOW THE COLLECTIVE ENGINE WORKS -->
+    <section id="how-it-works" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">A Disruption In Real Estate</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-display text-white mt-2">
+                    How Suman Nest Changes The Equation
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-3">
+                    A single retail buyer has zero leverage against high property prices and broker fees. But when SumanTV brings 100 serious buyers with tokens locked, everything flips.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+                <!-- Step 1 -->
+                <div class="glass-panel p-6 rounded-2xl relative border-t-2 border-amber-500">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-display font-black text-xl flex items-center justify-center mb-4">
+                        01
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display">Token & Demand Pooling</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Serious buyers join a specific micro-market cohort by depositing a refundable ₹10,000 token into an audited escrow account, proving genuine purchase intent.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="glass-panel p-6 rounded-2xl relative border-t-2 border-amber-500">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-display font-black text-xl flex items-center justify-center mb-4">
+                        02
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display">Institutional Bulk Negotiation</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        SumanTV's executive council presents the 100-buyer block to Tier-1 developers. Because builders eliminate customer acquisition costs (CAC) and marketing agency retainers, they pass back 15-22% cash discounts.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="glass-panel p-6 rounded-2xl relative border-t-2 border-amber-500">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-display font-black text-xl flex items-center justify-center mb-4">
+                        03
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display">Supply Chain Wholesaling</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        We leverage this bulk scale to directly negotiate factory rates for Cement, TMT Steel, Marbles, Sanitaryware, and ACs, ensuring individual builders save millions in raw construction costs.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="glass-panel p-6 rounded-2xl relative border-t-2 border-emerald-500">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 font-display font-black text-xl flex items-center justify-center mb-4">
+                        04
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display">Direct Allotment & Handover</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Bank loans are syndicated at lowest institutional spreads with zero processing fees. Buyers move into verified homes, saving an average of ₹18 to ₹35 Lakhs per family.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC SAVINGS CALCULATOR -->
+    <section id="calculator" class="py-20 bg-navy-950/80 relative border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Real-time Wealth Simulation</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-display text-white mt-2">
+                    Dynamic Ecosystem Savings Calculator
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">
+                    Adjust your property budget and select lifestyle integrations to see how much wealth your family saves through the Suman Nest community syndicate.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-5xl mx-auto">
+                <!-- Controls Side (7 cols) -->
+                <div class="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-2xl space-y-8">
+                    <!-- Property Budget Slider -->
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="text-sm font-semibold text-slate-200">Desired Property Budget</label>
+                            <span id="budgetValueDisplay" class="text-2xl font-black text-amber-400 font-display">₹1.00 Crore</span>
+                        </div>
+                        <input type="range" id="budgetRange" min="50" max="300" step="5" value="100" class="w-full h-2 bg-navy-900 rounded-lg cursor-pointer">
+                        <div class="flex justify-between text-[11px] text-slate-400 mt-2 font-mono">
+                            <span>₹50 Lakhs</span>
+                            <span>₹1.5 Crores</span>
+                            <span>₹3.0 Crores</span>
+                        </div>
+                    </div>
+
+                    <!-- Add-on Checklist for Allied Services -->
+                    <div>
+                        <label class="text-sm font-semibold text-slate-200 block mb-3">
+                            Include Ecosystem Partner Packages (Factory-Direct Subscriptions):
+                        </label>
+                        <div class="space-y-3">
+                            <!-- Addon 1 -->
+                            <label class="flex items-center justify-between p-3.5 rounded-xl bg-navy-900/80 border border-white/5 cursor-pointer hover:border-amber-500/30 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="interiorCheck" checked class="w-4 h-4 rounded text-amber-500 accent-amber-500 cursor-pointer">
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-semibold text-white">Full Modular Interiors & Kitchen</div>
+                                        <div class="text-[11px] text-slate-400">Direct factory plywood, German hardware, wardrobes</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-amber-400 whitespace-nowrap">+ ₹3.5L Saved</span>
+                            </label>
+
+                            <!-- Addon 2 -->
+                            <label class="flex items-center justify-between p-3.5 rounded-xl bg-navy-900/80 border border-white/5 cursor-pointer hover:border-amber-500/30 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="applianceCheck" checked class="w-4 h-4 rounded text-amber-500 accent-amber-500 cursor-pointer">
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-semibold text-white">Full Home Appliances & Sanitary Bundle</div>
+                                        <div class="text-[11px] text-slate-400">5 ACs, Smart Refrigerator, Kohler/Jaquar sanitaryware</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-amber-400 whitespace-nowrap">+ ₹2.2L Saved</span>
+                            </label>
+
+                            <!-- Addon 3 -->
+                            <label class="flex items-center justify-between p-3.5 rounded-xl bg-navy-900/80 border border-white/5 cursor-pointer hover:border-amber-500/30 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="solarCheck" class="w-4 h-4 rounded text-amber-500 accent-amber-500 cursor-pointer">
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-semibold text-white">Rooftop Solar & Smart Home Automation</div>
+                                        <div class="text-[11px] text-slate-400">5kW On-Grid Solar, Biometric Lock, Sensor Lighting</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-amber-400 whitespace-nowrap">+ ₹1.4L Saved</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Output Card (5 cols) -->
+                <div class="lg:col-span-5 bg-gradient-to-b from-navy-800 to-navy-900 border-2 border-amber-500/40 p-6 sm:p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+                    <div class="absolute -top-12 -right-12 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                        <span class="text-xs uppercase tracking-wider text-amber-400 font-bold">Estimated Savings Summary</span>
+                        <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono">100-Buyer Power</span>
+                    </div>
+
+                    <div class="mt-6 space-y-4 text-xs sm:text-sm">
+                        <div class="flex justify-between items-center text-slate-300">
+                            <span>Direct Builder Bulk Discount (18%):</span>
+                            <span id="builderDiscountDisplay" class="font-bold text-white">₹18.00 Lakhs</span>
+                        </div>
+                        <div class="flex justify-between items-center text-slate-300">
+                            <span>Syndicated Bank Loan & Processing Concession:</span>
+                            <span id="bankSavingsDisplay" class="font-bold text-white">₹2.80 Lakhs</span>
+                        </div>
+                        <div class="flex justify-between items-center text-slate-300">
+                            <span>Allied Interiors & Materials Package:</span>
+                            <span id="vendorSavingsDisplay" class="font-bold text-white">₹5.70 Lakhs</span>
+                        </div>
+                    </div>
+
+                    <!-- Total Highlight -->
+                    <div class="mt-8 pt-6 border-t border-white/10 bg-navy-950/60 p-4 rounded-xl border border-amber-500/20">
+                        <div class="text-xs text-amber-400 font-medium">TOTAL FAMILY WEALTH PRESERVED</div>
+                        <div id="totalSavingsDisplay" class="text-3xl sm:text-4xl font-black text-amber-400 font-display mt-1">
+                            ₹26.50 Lakhs
+                        </div>
+                        <div class="text-[11px] text-slate-400 mt-1">
+                            Equivalent to nearly <strong class="text-white">2.5 to 3 years</strong> of an average IT executive's post-tax salary.
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button onclick="openModal('buyerModal')" class="w-full mt-6 py-4 rounded-xl text-sm font-bold bg-amber-500 hover:bg-amber-400 text-navy-950 flex items-center justify-center gap-2 transition-transform shadow-lg shadow-amber-500/25">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i> Lock ₹10,000 Token To Claim
+                    </button>
+                    <p class="text-[11px] text-center text-slate-400 mt-2">100% Refundable if cohort negotiations do not match target pricing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRIPLE-SIDED ECOSYSTEM ARCHITECTURE -->
+    <section id="ecosystem" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Complete Stakeholder Synergy</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-display text-white mt-2">
+                    A Win-Win-Win Ecosystem
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">
+                    How Suman Nest unites homebuyers, real estate developers, and national material conglomerates into one cohesive ecosystem.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pillar 1: Homebuyers -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-amber-500 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-6">
+                            <i data-lucide="home" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white font-display mb-3">For Serious Homebuyers</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                            Escape soaring retail real estate markups. Gain institutional clout, guaranteed legal safety, and bundled discounts for the full home-building journey.
+                        </p>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>₹18-35L Instant Saving</strong> below standard developer rack rate.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>Independent RERA Audit:</strong> Full title check & legal clearance conducted by high court advocates.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>Safe Escrow:</strong> Your ₹10,000 intent token is protected until deal finalization.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('buyerModal')" class="mt-8 w-full py-3 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 hover:bg-amber-500 hover:text-navy-950 border border-amber-500/40 transition-colors">
+                        Join as Buyer &rarr;
+                    </button>
+                </div>
+
+                <!-- Pillar 2: Developers -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-indigo-500 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6">
+                            <i data-lucide="building-2" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white font-display mb-3">For Real Estate Developers</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                            Solve the #1 industry bottleneck: cash flow velocity and unsold inventory carrying costs. Sell 50 to 100 units in a single campaign without massive agency marketing budgets.
+                        </p>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>Instant 100-Unit Velocity:</strong> Secure fast capital rotation to fund ongoing construction milestones.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>Zero Brokerage CAC:</strong> Bypass massive 3-5% channel partner fees & multi-crore digital ad waste.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>Builder Raw Material Subsidy:</strong> Access wholesale Cement & Steel supplier tie-ups to reduce overall project construction costs.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('developerModal')" class="mt-8 w-full py-3 rounded-xl text-xs font-bold bg-indigo-500/20 text-indigo-300 hover:bg-indigo-600 hover:text-white border border-indigo-500/40 transition-colors">
+                        List Inventory &rarr;
+                    </button>
+                </div>
+
+                <!-- Pillar 3: Materials & Vendors -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-emerald-500 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
+                            <i data-lucide="truck" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white font-display mb-3">For Material & Interior Brands</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                            Direct pipeline to hundreds of new home handovers and mid-scale builders needing bulk structural supplies and interior furnishings.
+                        </p>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>Structural Building Supplies:</strong> Cement, TMT Steel, Sand, Blocks, Wiring, Plumbing & Paints.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>Home Lifestyle & Furniture:</strong> Modular kitchens, Sofas, Mattresses, Air Conditioners, & Smart Tech.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>B2B Subscription Model:</strong> Predictable recurring subscription + success commission on fulfilled orders.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('vendorModal')" class="mt-8 w-full py-3 rounded-xl text-xs font-bold bg-emerald-500/20 text-emerald-300 hover:bg-emerald-600 hover:text-white border border-emerald-500/40 transition-colors">
+                        Join Supplier Network &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST & AUTHORITY SECTION -->
+    <section id="authority" class="py-20 bg-navy-900/50 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Media Power -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-bold">
+                        <i data-lucide="tv" class="w-3.5 h-3.5"></i> Powered by SumanTV Media Network
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-display text-white">
+                        South India's Most Trusted Digital Megaphone is Now Your Housing Advocate.
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                        With over 14 Crore daily engagements across YouTube, social channels, and regional television, SumanTV eliminates the traditional real estate cartel. Our top anchors and market analysts educate homebuyers, conduct on-ground site audits, and ensure transparent escrow enforcement.
+                    </p>
+
+                    <!-- Trust Pillars -->
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="glass-panel p-4 rounded-xl border border-white/5">
+                            <i data-lucide="file-check" class="w-6 h-6 text-amber-400 mb-2"></i>
+                            <h4 class="text-sm font-bold text-white">RERA Escrow Guarantee</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">Every ₹10,000 commitment token resides in an audited escrow until terms are locked.</p>
+                        </div>
+                        <div class="glass-panel p-4 rounded-xl border border-white/5">
+                            <i data-lucide="landmark" class="w-6 h-6 text-emerald-400 mb-2"></i>
+                            <h4 class="text-sm font-bold text-white">Institutional Bank Tie-ups</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">Direct syndication desks with SBI, HDFC & ICICI for zero-processing home loans.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Verified Partner & Banking Grid -->
+                <div class="lg:col-span-6 glass-panel p-8 rounded-2xl border border-white/10">
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-6 flex items-center justify-between">
+                        <span>Syndicated Banking & Material Alliances</span>
+                        <span class="text-xs text-amber-400 font-normal">Pre-approved Ecosystem</span>
+                    </h3>
+
+                    <!-- Allied Categories badges -->
+                    <div class="space-y-4">
+                        <div>
+                            <div class="text-xs text-slate-400 mb-2 font-semibold">Institutional Home Loan Desks:</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs font-bold text-white border border-white/10">State Bank of India (SBI Bulk Desk)</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs font-bold text-white border border-white/10">HDFC Bank Syndicate</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs font-bold text-white border border-white/10">ICICI Bank Home Loans</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-400 mb-2 font-semibold">Structural Supply Chain Lines:</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs text-slate-300 border border-white/10">UltraTech / Bharathi Cement</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs text-slate-300 border border-white/10">Tata Tiscon / Jindal Panther Steel</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs text-slate-300 border border-white/10">Kajaria / Somany Vitrified Tiles</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs text-slate-300 border border-white/10">Polycab & Finolex Electricals</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs text-slate-400 mb-2 font-semibold">Interior & Living Alliances:</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs text-slate-300 border border-white/10">CenturyPly Modular Factory Hub</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs text-slate-300 border border-white/10">Daikin / Voltas Inverter AC Consortium</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs text-slate-300 border border-white/10">Asian Paints Luxury Line</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-navy-950 text-xs text-slate-300 border border-white/10">Tata Power Solar Rooftop</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="badge-percent" class="w-6 h-6 text-amber-400"></i>
+                            <div>
+                                <div class="text-xs font-bold text-white">Wholesale B2B Rate Guarantee</div>
+                                <div class="text-[11px] text-slate-400">Allied partners pass minimum 15% margin cuts to Suman Nest cohorts.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <section class="py-16 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-navy-950 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl sm:text-5xl font-black font-display tracking-tight leading-tight mb-4">
+                Ready to Own Your Dream Home at True Builder Cost?
+            </h2>
+            <p class="text-base sm:text-lg font-medium text-navy-900 max-w-2xl mx-auto mb-8">
+                Join thousands of families pooling their intent on Suman Nest. Lock your ₹10,000 priority token today or propose your micro-market.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="openModal('buyerModal')" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-navy-950 hover:bg-navy-900 text-white transition-transform hover:scale-105 shadow-xl">
+                    Lock My ₹10,000 Token Now
+                </button>
+                <button onclick="openModal('vendorModal')" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-white/20 hover:bg-white/30 text-navy-950 border border-navy-950/20 transition-all">
+                    Register as Material/Interior Vendor
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN FOOTER -->
+    <footer class="bg-navy-950 border-t border-white/10 py-12 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-black text-xl text-white">SUMAN<span class="text-amber-500">NEST</span></span>
+                        <span class="text-[9px] bg-red-600 text-white font-bold px-1 py-0.5 rounded">TV</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed text-xs">
+                        A community-powered real estate collective initiative by SumanTV. Democratizing property acquisition through transparent aggregate demand.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Active Micro-Markets</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#cohorts" class="hover:text-amber-400">Tellapur / Financial District</a></li>
+                        <li><a href="#cohorts" class="hover:text-amber-400">Kompally / Medchal Corridor</a></li>
+                        <li><a href="#cohorts" class="hover:text-amber-400">Vijayawada Highway Green Villas</a></li>
+                        <li><a href="#cohorts" class="hover:text-amber-400">Mokila / Neopolis Upcoming</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Ecosystem Portals</h4>
+                    <ul class="space-y-2">
+                        <li><button onclick="openModal('developerModal')" class="hover:text-amber-400">Developer Bulk Liquidation</button></li>
+                        <li><button onclick="openModal('vendorModal')" class="hover:text-amber-400">Vendor B2B Subscriptions</button></li>
+                        <li><a href="#calculator" class="hover:text-amber-400">Family Wealth Calculator</a></li>
+                        <li><button onclick="openModal('demandModal')" class="hover:text-amber-400">Suggest Micro-Market</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Compliance & Escrow</h4>
+                    <p class="leading-relaxed mb-3">
+                        Commitment tokens are held in designated escrow accounts. Real estate deals executed strictly under respective state RERA regulations.
+                    </p>
+                    <div class="text-[11px] text-amber-400/90 font-mono">
+                        Escrow Partner: ICICI Bank Trustee Desk
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>&copy; <span id="currentYear"></span> Suman Nest (SumanTV Media Network). All rights reserved.</div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Escrow Terms</a>
+                    <a href="#" class="hover:text-white">RERA Compliance</a>
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- 1. BUYER INTENT & TOKEN LOCK MODAL -->
+    <div id="buyerModal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-navy-900 border border-amber-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <!-- Close -->
+            <button onclick="closeModal('buyerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-display text-white">Lock ₹10,000 Token</h3>
+                <p class="text-xs text-slate-300 mt-1">Join a verified 100-buyer collective. 100% refundable escrow guarantee.</p>
+            </div>
+
+            <!-- Form -->
+            <form id="buyerTokenForm" onsubmit="handleBuyerSubmit(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Target Cohort / Location</label>
+                    <select id="modalCohortSelect" required class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                        <option value="Tellapur Premium 3BHK Gated High-Rise">Tellapur Premium 3BHK Gated High-Rise (Hyderabad)</option>
+                        <option value="Kompally Smart Living 2 & 3BHK Community">Kompally Smart Living 2 & 3BHK (North Hyderabad)</option>
+                        <option value="Vijayawada Highway Eco-Villa Enclave">Vijayawada Highway Eco-Villa Enclave (AP Corridor)</option>
+                        <option value="General Open Cohort">General Priority Access (All upcoming batches)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Full Legal Name</label>
+                        <input type="text" required placeholder="As per Aadhaar/PAN" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp Mobile</label>
+                        <input type="tel" required placeholder="+91 98765 43210" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Email Address</label>
+                        <input type="email" required placeholder="name@domain.com" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Target Purchase Horizon</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>Ready to Move / 0-3 Months</option>
+                            <option>3 to 6 Months</option>
+                            <option>Within 1 Year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Escrow Breakdown Box -->
+                <div class="bg-navy-950 p-3.5 rounded-xl border border-amber-500/30 text-xs space-y-1.5">
+                    <div class="flex justify-between text-slate-300">
+                        <span>Commitment Token Amount:</span>
+                        <span class="font-bold text-amber-400">₹10,000</span>
+                    </div>
+                    <div class="flex justify-between text-slate-400 text-[11px]">
+                        <span>Escrow Holding Entity:</span>
+                        <span class="text-white">Suman Nest Client Escrow (ICICI Trustee)</span>
+                    </div>
+                    <div class="text-[10px] text-emerald-400 pt-1 border-t border-white/10">
+                        ✓ 100% Refundable if builder terms or final pricing are not accepted by you.
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-400 text-navy-950 shadow-lg shadow-amber-500/20 text-sm">
+                    Simulate Payment & Lock Token &rarr;
+                </button>
+            </form>
+
+            <!-- Success State (Hidden by default) -->
+            <div id="buyerSuccessState" class="hidden text-center py-6 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white font-display">Token Successfully Locked!</h4>
+                <p class="text-xs text-slate-300">
+                    Your escrow confirmation certificate has been sent to your WhatsApp and email. An executive counselor from SumanTV will contact you within 24 hours.
+                </p>
+                <div class="p-3 bg-navy-950 rounded-lg text-xs font-mono text-amber-400">
+                    Cohort Reference: <span id="successCohortRef">SN-HYD-9921</span>
+                </div>
+                <button onclick="closeModal('buyerModal')" class="mt-4 px-6 py-2 rounded-xl text-xs font-bold bg-navy-800 text-white">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DEVELOPER INVENTORY SUBMISSION MODAL -->
+    <div id="developerModal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-navy-900 border border-indigo-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('developerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="building-2" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-display text-white">Developer Bulk Liquidation</h3>
+                <p class="text-xs text-slate-300 mt-1">Submit your inventory to liquidate 20 to 100 units in one swift campaign.</p>
+            </div>
+
+            <form id="devForm" onsubmit="handleDevSubmit(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Company / Developer Name</label>
+                    <input type="text" required placeholder="e.g., Aparna / My Home / Prestige / Local Entity" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Project Name</label>
+                        <input type="text" required placeholder="Project Name" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">RERA Registration ID</label>
+                        <input type="text" required placeholder="P0240000XXXX" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Units Allocated for Cohort</label>
+                        <input type="number" min="20" max="250" value="50" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Proposed Bulk Discount</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                            <option>15% Bulk Concession</option>
+                            <option>18% Bulk Concession</option>
+                            <option>20%+ Maximum Velocity</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Official Contact Person & Phone</label>
+                    <input type="text" required placeholder="VP Sales / Director - +91 XXXXX XXXXX" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg text-sm">
+                    Submit Project for Suman Nest Audit &rarr;
+                </button>
+            </form>
+
+            <div id="devSuccessState" class="hidden text-center py-6 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white font-display">Inventory Submission Received</h4>
+                <p class="text-xs text-slate-300">
+                    Our institutional partnership desk will review your RERA documents and contact your sales leadership within 48 business hours.
+                </p>
+                <button onclick="closeModal('developerModal')" class="mt-4 px-6 py-2 rounded-xl text-xs font-bold bg-navy-800 text-white">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. VENDOR & MATERIAL PARTNER ONBOARDING MODAL -->
+    <div id="vendorModal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-navy-900 border border-emerald-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('vendorModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="truck" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-display text-white">Material & Lifestyle Partner Desk</h3>
+                <p class="text-xs text-slate-300 mt-1">Connect your supply line to hundreds of active residential handovers.</p>
+            </div>
+
+            <!-- Pricing Tier Snapshot -->
+            <div class="grid grid-cols-3 gap-2 mb-6">
+                <div class="p-2.5 rounded-xl bg-navy-950 border border-white/10 text-center">
+                    <div class="text-[10px] text-slate-400">Quarterly</div>
+                    <div class="text-sm font-bold text-white">₹25,000</div>
+                    <div class="text-[9px] text-emerald-400">+ 3% success fee</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-center">
+                    <div class="text-[10px] text-emerald-400 font-bold">Half-Yearly</div>
+                    <div class="text-sm font-bold text-white">₹45,000</div>
+                    <div class="text-[9px] text-emerald-400">+ 2.5% success fee</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-navy-950 border border-white/10 text-center">
+                    <div class="text-[10px] text-slate-400">Annual Tier</div>
+                    <div class="text-sm font-bold text-white">₹80,000</div>
+                    <div class="text-[9px] text-emerald-400">+ 2% success fee</div>
+                </div>
+            </div>
+
+            <form id="vendorForm" onsubmit="handleVendorSubmit(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Company / Brand Name</label>
+                    <input type="text" required placeholder="e.g., Steel Distributor / Interior Studio / Kitchen Appliances" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Supply Category</label>
+                    <select required class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                        <option>Cement, TMT Steel & Raw Construction Material</option>
+                        <option>Tiles, Marble, Granite & Sanitaryware</option>
+                        <option>Modular Kitchens, Wardrobes & Interior Woodwork</option>
+                        <option>Home Appliances, Air Conditioners & Electronics</option>
+                        <option>Solar Rooftops, Automation & Smart Home Security</option>
+                        <option>Furniture (Sofas, Beds, Dining)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">GSTIN Number</label>
+                        <input type="text" required placeholder="36AAACXXXX1Z5" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Selected Subscription</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                            <option>Half-Yearly (₹45,000)</option>
+                            <option>Annual Plan (₹80,000)</option>
+                            <option>Quarterly (₹25,000)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Representative Name & Contact</label>
+                    <input type="text" required placeholder="Authorized Director & Phone" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg text-sm">
+                    Apply for Ecosystem Vendor Verification &rarr;
+                </button>
+            </form>
+
+            <div id="vendorSuccessState" class="hidden text-center py-6 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white font-display">Partner Application Logged</h4>
+                <p class="text-xs text-slate-300">
+                    Our supply chain lead will verify your GST and wholesale pricing schedule to onboard your catalog.
+                </p>
+                <button onclick="closeModal('vendorModal')" class="mt-4 px-6 py-2 rounded-xl text-xs font-bold bg-navy-800 text-white">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. DEMAND POOL / PROPOSE NEW LOCATION MODAL -->
+    <div id="demandModal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-navy-900 border border-amber-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl">
+            <button onclick="closeModal('demandModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-display text-white">Propose a Micro-Market</h3>
+                <p class="text-xs text-slate-300 mt-1">Once 50 serious inquiries register for an area, SumanTV opens a direct cohort.</p>
+            </div>
+
+            <form id="demandForm" onsubmit="handleDemandSubmit(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Target Neighborhood / City</label>
+                    <input type="text" required placeholder="e.g., Kokapet / Narsingi / Gannavaram / Visakhapatnam Beach Road" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Configuration Needed</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>Premium 2BHK</option>
+                            <option>Spacious 3BHK</option>
+                            <option>4BHK / Penthouse</option>
+                            <option>Independent Villa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Budget Target</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>₹60L - ₹80L</option>
+                            <option>₹80L - ₹1.2 Cr</option>
+                            <option>₹1.2 Cr - ₹2.0 Cr</option>
+                            <option>₹2.0 Cr+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Your Mobile / WhatsApp</label>
+                    <input type="tel" required placeholder="+91 98765 43210" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-400 text-navy-950 text-sm">
+                    Submit Demand Vote &rarr;
+                </button>
+            </form>
+
+            <div id="demandSuccessState" class="hidden text-center py-6 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white font-display">Demand Registered!</h4>
+                <p class="text-xs text-slate-300">
+                    We have pooled your vote. As soon as this micro-market reaches 50 backers, you will receive first notification to lock your ₹10,000 priority slot.
+                </p>
+                <button onclick="closeModal('demandModal')" class="mt-4 px-6 py-2 rounded-xl text-xs font-bold bg-navy-800 text-white">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. PLOT SURVEY & ARCHITECTURAL BLUEPRINT MODAL -->
+    <div id="plotConsultModal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-navy-900 border border-amber-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('plotConsultModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="compass" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-display text-white">Build on Your Plot</h3>
+                <p class="text-xs text-slate-300 mt-1">Connect with verified Council of Architecture (COA) engineers and get factory-wholesale material rates.</p>
+            </div>
+
+            <form id="plotForm" onsubmit="handlePlotSubmit(event)" class="space-y-4 text-left">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Plot Location / District</label>
+                        <input type="text" required placeholder="e.g. Shadnagar / Warangal / Vizag" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Plot Size (Sq. Yards)</label>
+                        <input type="number" required placeholder="e.g. 200" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Planned Structure</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>G + 1 Duplex Luxury Villa</option>
+                            <option>G + 2 Rental Income Building</option>
+                            <option>Single Floor Farmhouse (G+0)</option>
+                            <option>Commercial + Residential Mix</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Target Budget</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>₹30L - ₹50L (Smart Eco)</option>
+                            <option>₹50L - ₹75L (Premium Living)</option>
+                            <option>₹75L - ₹1.2 Cr (Luxury Elite)</option>
+                            <option>₹1.2 Cr+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name</label>
+                        <input type="text" required placeholder="Legal Name" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp Mobile</label>
+                        <input type="tel" required placeholder="+91 98765 43210" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                </div>
+
+                <div class="bg-navy-950 p-3.5 rounded-xl border border-amber-500/20 text-xs text-slate-300 space-y-1">
+                    <div class="font-bold text-amber-400">Included in Suman Nest Landowner Consultation:</div>
+                    <div>• Free preliminary soil & digital plot feasibility check</div>
+                    <div>• 2D CAD Vaastu Floor Plan + 3D Elevation Sample</div>
+                    <div>• Direct procurement access to Cement & Steel wholesale syndicate</div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-400 text-navy-950 shadow-lg shadow-amber-500/20 text-sm">
+                    Book Architect Consultation & BOQ &rarr;
+                </button>
+            </form>
+
+            <div id="plotSuccessState" class="hidden text-center py-6 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white font-display">Plot Request Scheduled</h4>
+                <p class="text-xs text-slate-300">
+                    A Senior Structural Engineer from the Suman Nest Council has been assigned to your plot location and will connect via WhatsApp within 24 hours.
+                </p>
+                <button onclick="closeModal('plotConsultModal')" class="mt-4 px-6 py-2 rounded-xl text-xs font-bold bg-navy-800 text-white">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. NEXT-GEN / PREFAB / CONTAINER ORDER MODAL -->
+    <div id="nextGenModal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-navy-900 border border-emerald-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('nextGenModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="package-check" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-display text-white">Order Next-Gen Modular Home</h3>
+                <p id="nextGenModalSubtitle" class="text-xs text-slate-300 mt-1">Pre-engineered factory construction delivered right to your land.</p>
+            </div>
+
+            <form id="nextGenForm" onsubmit="handleNextGenSubmit(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Selected Model</label>
+                    <input type="text" id="nextGenSelectedModel" readonly class="w-full bg-navy-950 border border-emerald-500/30 rounded-xl px-3.5 py-2.5 text-sm font-bold text-emerald-400 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Delivery Destination / District</label>
+                        <input type="text" required placeholder="e.g. Vikarabad Farm / Shamshabad" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Off-Grid Power Addon</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                            <option>Standard Grid Power Hookup</option>
+                            <option>5kW Off-Grid Solar + Lithium Battery Pack</option>
+                            <option>Solar + Bio-Digester Eco System</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Your Name</label>
+                        <input type="text" required placeholder="Full Name" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp Mobile</label>
+                        <input type="tel" required placeholder="+91 98765 43210" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                    </div>
+                </div>
+
+                <div class="p-3.5 bg-navy-950 rounded-xl border border-white/10 text-xs space-y-1">
+                    <div class="flex justify-between text-slate-300">
+                        <span>SumanTV Collective Bulk Price:</span>
+                        <span id="nextGenBatchPrice" class="font-bold text-amber-400">₹9.90 Lakhs</span>
+                    </div>
+                    <div class="text-[11px] text-emerald-400">
+                        ✓ Includes factory build, insulation, electrical conduit, and on-site crane leveling.
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-emerald-500 hover:bg-emerald-400 text-navy-950 shadow-lg text-sm">
+                    Confirm Factory Inspection & Site Readiness &rarr;
+                </button>
+            </form>
+
+            <div id="nextGenSuccessState" class="hidden text-center py-6 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white font-display">Factory Production Slot Reserved!</h4>
+                <p class="text-xs text-slate-300">
+                    Your modular home customization sheet and fabrication video walkthrough have been dispatched to your WhatsApp.
+                </p>
+                <button onclick="closeModal('nextGenModal')" class="mt-4 px-6 py-2 rounded-xl text-xs font-bold bg-navy-800 text-white">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. CONSOLIDATED BUILDING MATERIAL BULK QUOTE / INDENT MODAL -->
+    <div id="materialQuoteModal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-navy-900 border border-amber-500/40 rounded-2xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('materialQuoteModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="truck" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-display text-white">Consolidated Material Indent</h3>
+                <p class="text-xs text-slate-300 mt-1">Pool your site order with Suman Nest to unlock direct factory manufacturer prices.</p>
+            </div>
+
+            <form id="materialQuoteForm" onsubmit="handleMaterialQuoteSubmit(event)" class="space-y-4 text-left">
+                <!-- Delivery Location -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Project Site Location</label>
+                        <input type="text" required placeholder="e.g. Kokapet, Hyderabad" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Dispatch Urgency</label>
+                        <select class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>Immediate (Within 48 Hours)</option>
+                            <option>Within 7 Days</option>
+                            <option>Staggered 30-Day Project Schedule</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Quantity Inputs -->
+                <div class="p-4 rounded-xl bg-navy-950 border border-white/10 space-y-3">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block">Estimate Your Materials Quantity</span>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Cement (Bags)</label>
+                            <input type="number" id="quoteCementQty" value="400" min="50" onchange="recalculateMaterialBill()" class="w-full bg-navy-900 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">TMT Steel (Tonnes)</label>
+                            <input type="number" id="quoteSteelQty" value="10" min="1" step="0.5" onchange="recalculateMaterialBill()" class="w-full bg-navy-900 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">M-Sand (Tonnes)</label>
+                            <input type="number" id="quoteSandQty" value="40" min="5" onchange="recalculateMaterialBill()" class="w-full bg-navy-900 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono">
+                        </div>
+                    </div>
+
+                    <!-- Live Bill Summary -->
+                    <div class="pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                        <div>
+                            <div class="text-slate-400">Estimated Retail Mandi Cost:</div>
+                            <div id="quoteRetailTotal" class="font-mono text-slate-400 line-through">₹7,58,000</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-amber-400 font-bold">Suman Nest Wholesale Price:</div>
+                            <div id="quoteBulkTotal" class="font-mono text-lg font-black text-amber-400 font-display">₹6,84,000</div>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-emerald-400 font-bold text-right" id="quoteSavingsDelta">
+                        🎉 Total Factory Savings: ₹74,000
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Contractor / Owner Name</label>
+                        <input type="text" required placeholder="Legal Name" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp Mobile</label>
+                        <input type="tel" required placeholder="+91 98765 43210" class="w-full bg-navy-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-400 text-navy-950 shadow-lg shadow-amber-500/20 text-xs sm:text-sm">
+                    Lock Factory Quotation & Request Dispatch &rarr;
+                </button>
+            </form>
+
+            <div id="quoteSuccessState" class="hidden text-center py-6 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white font-display">Factory Gate Indent Generated</h4>
+                <p class="text-xs text-slate-300">
+                    Your pooled indent bill has been assigned to our regional dispatch depot. A logistics manager will contact you with truck delivery slot and GST invoice confirmation.
+                </p>
+                <button onclick="closeModal('materialQuoteModal')" class="mt-4 px-6 py-2 rounded-xl text-xs font-bold bg-navy-800 text-white">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CONTROLLERS -->
+    <script>
+        // State for Plot Estimator
+        let currentPlotSize = 200; // in Sq.Yards
+        let currentFloors = 2; // G+1 Duplex
+        let currentRatePerSft = 1850; // Premium
+        let currentTierName = 'Premium Classic';
+
+        // COMPREHENSIVE BUILDING MATERIALS DATABASE (TG & AP MANDI BENCHMARK)
+        const materialsData = {
+            cement: [
+                { brand: "UltraTech Super", spec: "53 Grade OPC (Precast & Structural)", retail: "₹370 / bag", bulk: "₹315 / bag", save: "₹55 / bag (-15%)" },
+                { brand: "UltraTech Weather Pro", spec: "Water-repellent hydrophobic PPC", retail: "₹395 / bag", bulk: "₹335 / bag", save: "₹60 / bag (-15%)" },
+                { brand: "Bharathi Cement", spec: "53 Grade OPC / Ultra Fast Set", retail: "₹350 / bag", bulk: "₹295 / bag", save: "₹55 / bag (-16%)" },
+                { brand: "Maha Cement", spec: "High Early Strength PPC / Solid Core", retail: "₹340 / bag", bulk: "₹285 / bag", save: "₹55 / bag (-16%)" },
+                { brand: "Dalmia DSP", spec: "Specialized Duraloc Slag & Silica Blend", retail: "₹380 / bag", bulk: "₹320 / bag", save: "₹60 / bag (-16%)" },
+                { brand: "Ramco Supergrade", spec: "PPC Engineered Pozzolana", retail: "₹360 / bag", bulk: "₹305 / bag", save: "₹55 / bag (-15%)" },
+                { brand: "ACC Suraksha Power", spec: "High Strength 53 Grade Compressive", retail: "₹365 / bag", bulk: "₹310 / bag", save: "₹55 / bag (-15%)" },
+                { brand: "Nagarjuna / Zuari", spec: "53 Grade OPC Foundation Grade", retail: "₹330 / bag", bulk: "₹280 / bag", save: "₹50 / bag (-15%)" }
+            ],
+            steel: [
+                { brand: "Tata Tiscon 550D", spec: "Fe 550D Super Ductile (Corrosion Resist)", retail: "₹64,500 / Tonne (₹64.5/kg)", bulk: "₹58,200 / Tonne (₹58.2/kg)", save: "₹6,300 / Tonne (-10%)" },
+                { brand: "JSW Neosteel Fe 550D", spec: "Pure Steel / Zero Impurity High Bond", retail: "₹62,000 / Tonne (₹62.0/kg)", bulk: "₹56,400 / Tonne (₹56.4/kg)", save: "₹5,600 / Tonne (-9%)" },
+                { brand: "Vizag Steel (RINL)", spec: "Primary Billet PSU Grade Fe 500D/550D", retail: "₹61,000 / Tonne (₹61.0/kg)", bulk: "₹55,500 / Tonne (₹55.5/kg)", save: "₹5,500 / Tonne (-9%)" },
+                { brand: "Jindal Panther", spec: "Fe 550D Rebars with Fine Grain Ribs", retail: "₹61,500 / Tonne (₹61.5/kg)", bulk: "₹55,800 / Tonne (₹55.8/kg)", save: "₹5,700 / Tonne (-9%)" },
+                { brand: "Kamdhenu Nxt", spec: "Double Rib Fe 550 Earthquake Resistant", retail: "₹57,500 / Tonne (₹57.5/kg)", bulk: "₹52,200 / Tonne (₹52.2/kg)", save: "₹5,300 / Tonne (-9%)" },
+                { brand: "Radha TMT 550D", spec: "German LRF Refining Technology Rebar", retail: "₹56,000 / Tonne (₹56.0/kg)", bulk: "₹51,000 / Tonne (₹51.0/kg)", save: "₹5,000 / Tonne (-9%)" },
+                { brand: "Simhadri TMT", spec: "Fe 500D Cost-Effective Regional Grade", retail: "₹54,500 / Tonne (₹54.5/kg)", bulk: "₹49,800 / Tonne (₹49.8/kg)", save: "₹4,700 / Tonne (-9%)" }
+            ],
+            sand: [
+                { brand: "Robo M-Sand (Zone II)", spec: "Washed Granular Concrete Sand (0-4.75mm)", retail: "₹1,450 / Tonne", bulk: "₹1,180 / Tonne", save: "₹270 / Tonne (-19%)" },
+                { brand: "Plastering P-Sand", spec: "Micro-Fine Washed Sand (0-2.36mm)", retail: "₹1,650 / Tonne", bulk: "₹1,350 / Tonne", save: "₹300 / Tonne (-18%)" },
+                { brand: "Natural River Sand (Gov Rate)", spec: "TS Sand Portal Permitted River Bed Sand", retail: "₹2,400 / Tonne", bulk: "₹1,950 / Tonne", save: "₹450 / Tonne (-19%)" },
+                { brand: "20mm Blue Metal Metal Aggregate", spec: "Machine Crushed Granite Gravel for RCC", retail: "₹1,250 / Tonne", bulk: "₹980 / Tonne", save: "₹270 / Tonne (-22%)" },
+                { brand: "40mm Base Coarse Metal", spec: "Sub-base Foundation Hard Rock Stones", retail: "₹1,100 / Tonne", bulk: "₹880 / Tonne", save: "₹220 / Tonne (-20%)" },
+                { brand: "10-Wheeler Tipper Bulk Sand (16 Ton)", spec: "Bulk Site Delivery (Hyderabad / Ranga Reddy)", retail: "₹24,500 / Truck", bulk: "₹19,800 / Truck", save: "₹4,700 / Truck (-19%)" }
+            ],
+            bricks: [
+                { brand: "Standard Red Clay Kiln Bricks", spec: "Table Molded Class 1 (9x4x3 inches)", retail: "₹9.50 / piece", bulk: "₹7.80 / piece", save: "₹1.70 / piece (-18%)" },
+                { brand: "UltraTech Aerocon AAC Blocks", spec: "600 x 200 x 150mm (6-inch wall)", retail: "₹75.00 / block", bulk: "₹61.00 / block", save: "₹14.00 / block (-19%)" },
+                { brand: "UltraTech Aerocon AAC Blocks", spec: "600 x 200 x 100mm (4-inch partition)", retail: "₹52.00 / block", bulk: "₹42.50 / block", save: "₹9.50 / block (-18%)" },
+                { brand: "Fly Ash Bricks (Class A)", spec: "Hydraulic Compressed (9x4x3 inches)", retail: "₹6.80 / piece", bulk: "₹5.30 / piece", save: "₹1.50 / piece (-22%)" },
+                { brand: "Solid Concrete Blocks (6 inch)", spec: "Heavy Load-Bearing Structural Block", retail: "₹42.00 / block", bulk: "₹33.50 / block", save: "₹8.50 / block (-20%)" },
+                { brand: "AAC Block Jointing Mortar", spec: "40kg Self-curing Polymer Adhesive", retail: "₹450 / bag", bulk: "₹340 / bag", save: "₹110 / bag (-24%)" }
+            ],
+            rmc: [
+                { brand: "UltraTech RMC - M20 Grade", spec: "Columns & Slab standard residential mix", retail: "₹4,600 / m³", bulk: "₹3,950 / m³", save: "₹650 / m³ (-14%)" },
+                { brand: "UltraTech RMC - M25 Grade", spec: "Heavy RCC Duplex structural design", retail: "₹4,950 / m³", bulk: "₹4,250 / m³", save: "₹700 / m³ (-14%)" },
+                { brand: "ACC Concrete - M30 Grade", spec: "High durability / Basement Retaining Walls", retail: "₹5,400 / m³", bulk: "₹4,650 / m³", save: "₹750 / m³ (-14%)" },
+                { brand: "Godrej RMC - M35 High Flow", spec: "Self-compacting concrete with fly ash silica", retail: "₹5,800 / m³", bulk: "₹4,950 / m³", save: "₹850 / m³ (-15%)" },
+                { brand: "Concrete Boom Placer Charge", spec: "Per pour site pump deployment", retail: "₹8,500 / shift", bulk: "₹6,000 / shift", save: "₹2,500 / shift (-29%)" }
+            ],
+            allied: [
+                { brand: "Polycab FR-LSH Copper Wire", spec: "1.5 sq.mm 90m Coil (Fire Retardant)", retail: "₹2,250 / coil", bulk: "₹1,620 / coil", save: "₹630 / coil (-28%)" },
+                { brand: "Finolex 2.5 sq.mm Heavy Wire", spec: "Power Circuit 90m Coil", retail: "₹3,550 / coil", bulk: "₹2,580 / coil", save: "₹970 / coil (-27%)" },
+                { brand: "Astral CPVC Pro Pipes (1 inch)", spec: "SDR 11 Lead-free Hot/Cold (3m Length)", retail: "₹620 / length", bulk: "₹440 / length", save: "₹180 / length (-29%)" },
+                { brand: "Ashirvad SWR Drainage Pipes", spec: "110mm Ringfit Soil Pipe (3m Length)", retail: "₹890 / length", bulk: "₹650 / length", save: "₹240 / length (-27%)" },
+                { brand: "Asian Paints Royale Luxury Emulsion", spec: "20 Litre Drum Interior Finish", retail: "₹8,900 / drum", bulk: "₹6,850 / drum", save: "₹2,050 / drum (-23%)" },
+                { brand: "Berger WeatherCoat All Guard", spec: "20 Litre Exterior Silicone Protective", retail: "₹7,200 / drum", bulk: "₹5,600 / drum", save: "₹1,600 / drum (-22%)" }
+            ]
+        };
+
+        let currentActiveMatCategory = 'cement';
+
+        // Initialize Lucide Icons & tables
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+            // Year update
+            const yearElem = document.getElementById('currentYear');
+            if (yearElem) yearElem.textContent = new Date().getFullYear();
+
+            // Initialize calculators
+            setupCalculator();
+            recalculatePlotEstimate();
+            renderMaterialTable('cement');
+            recalculateMaterialBill();
+        });
+
+        // RENDER MATERIAL TABLE
+        function renderMaterialTable(category, filterText = '') {
+            currentActiveMatCategory = category;
+            const tbody = document.getElementById('materialTableBody');
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+            const items = materialsData[category] || [];
+
+            const filtered = items.filter(item => {
+                if (!filterText) return true;
+                const search = filterText.toLowerCase();
+                return item.brand.toLowerCase().includes(search) || item.spec.toLowerCase().includes(search);
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">No matching brands found. Propose a custom brand through our indent desk.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-white/5 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-3 sm:p-4 font-bold text-white flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></span>
+                        <span>${item.brand}</span>
+                    </td>
+                    <td class="p-3 sm:p-4 text-slate-300 text-xs">${item.spec}</td>
+                    <td class="p-3 sm:p-4 text-slate-400 line-through font-mono">${item.retail}</td>
+                    <td class="p-3 sm:p-4 font-bold text-amber-400 font-mono text-sm">${item.bulk}</td>
+                    <td class="p-3 sm:p-4 font-bold text-emerald-400 font-mono text-xs sm:text-sm">${item.save}</td>
+                    <td class="p-3 sm:p-4 text-right">
+                        <button onclick="openModalWithMaterial('${item.brand}')" class="px-3 py-1.5 rounded-lg bg-navy-800 hover:bg-amber-500 hover:text-navy-950 text-amber-400 border border-amber-500/30 text-[11px] font-bold transition-all">
+                            Book Indent +
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function switchMaterialTab(cat, btn) {
+            document.querySelectorAll('.mat-tab-btn').forEach(b => {
+                b.classList.remove('bg-amber-500', 'text-navy-950', 'font-bold', 'shadow-md');
+                b.classList.add('bg-navy-800', 'text-slate-300', 'font-medium');
+            });
+            btn.classList.add('bg-amber-500', 'text-navy-950', 'font-bold', 'shadow-md');
+            btn.classList.remove('bg-navy-800', 'text-slate-300', 'font-medium');
+
+            const searchInput = document.getElementById('materialSearchInput');
+            if (searchInput) searchInput.value = '';
+            renderMaterialTable(cat);
+        }
+
+        function filterMaterialTable() {
+            const query = document.getElementById('materialSearchInput').value;
+            renderMaterialTable(currentActiveMatCategory, query);
+        }
+
+        function openModalWithMaterial(brandName) {
+            openModal('materialQuoteModal');
+        }
+
+        // Consolidated Bill Calculation in Indent Modal
+        function recalculateMaterialBill() {
+            const cementQty = parseFloat(document.getElementById('quoteCementQty').value) || 0;
+            const steelQty = parseFloat(document.getElementById('quoteSteelQty').value) || 0;
+            const sandQty = parseFloat(document.getElementById('quoteSandQty').value) || 0;
+
+            // Mandi benchmark vs Bulk Wholesale
+            // Cement: MRP 360 vs Bulk 305 (Save 55/bag)
+            // Steel: MRP 62,000 vs Bulk 56,000 (Save 6,000/ton)
+            // Sand: MRP 1,450 vs Bulk 1,200 (Save 250/ton)
+
+            const retailCement = cementQty * 360;
+            const bulkCement = cementQty * 305;
+
+            const retailSteel = steelQty * 62000;
+            const bulkSteel = steelQty * 56000;
+
+            const retailSand = sandQty * 1450;
+            const bulkSand = sandQty * 1200;
+
+            const totalRetail = retailCement + retailSteel + retailSand;
+            const totalBulk = bulkCement + bulkSteel + bulkSand;
+            const savings = totalRetail - totalBulk;
+
+            const retailDisplay = document.getElementById('quoteRetailTotal');
+            const bulkDisplay = document.getElementById('quoteBulkTotal');
+            const saveDisplay = document.getElementById('quoteSavingsDelta');
+
+            if (retailDisplay) retailDisplay.textContent = `₹${totalRetail.toLocaleString('en-IN')}`;
+            if (bulkDisplay) bulkDisplay.textContent = `₹${totalBulk.toLocaleString('en-IN')}`;
+            if (saveDisplay) saveDisplay.textContent = `🎉 Total Factory Savings: ₹${savings.toLocaleString('en-IN')}`;
+        }
+
+        function handleMaterialQuoteSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('materialQuoteForm');
+            const success = document.getElementById('quoteSuccessState');
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        function toggleMobileMenu() {
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+        }
+
+        // Modal Management
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Helper to launch buyer modal with a preset deal
+        function openBuyerModalWithDeal(dealTitle, price, location) {
+            const selectElem = document.getElementById('modalCohortSelect');
+            if (selectElem) {
+                for (let i = 0; i < selectElem.options.length; i++) {
+                    if (selectElem.options[i].text.includes(dealTitle.substring(0, 15))) {
+                        selectElem.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            openModal('buyerModal');
+        }
+
+        // Helper to launch Next-Gen modal
+        function openNextGenModal(modelTitle, price, category) {
+            const titleInput = document.getElementById('nextGenSelectedModel');
+            const priceDisplay = document.getElementById('nextGenBatchPrice');
+            const subTitle = document.getElementById('nextGenModalSubtitle');
+
+            if (titleInput) titleInput.value = modelTitle;
+            if (priceDisplay) priceDisplay.textContent = price;
+            if (subTitle) subTitle.textContent = `${category} • 100% Factory Pre-Engineered with Off-Grid Readiness`;
+
+            openModal('nextGenModal');
+        }
+
+        // Next-Gen Category Filtering Logic
+        function filterNextGen(cat, btn) {
+            const buttons = document.querySelectorAll('.nextgen-filter-btn');
+            buttons.forEach(b => {
+                b.classList.remove('bg-emerald-500', 'text-navy-950', 'font-bold');
+                b.classList.add('bg-navy-800', 'text-slate-300', 'font-medium');
+            });
+            btn.classList.add('bg-emerald-500', 'text-navy-950', 'font-bold');
+            btn.classList.remove('bg-navy-800', 'text-slate-300', 'font-medium');
+
+            const cards = document.querySelectorAll('.nextgen-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // PLOT-TO-HOME ESTIMATOR LOGIC
+        function setPlotSize(sqYd, elem) {
+            currentPlotSize = sqYd;
+            document.querySelectorAll('.plot-btn').forEach(b => {
+                b.classList.remove('bg-amber-500', 'text-navy-950', 'font-black', 'border-amber-400');
+                b.classList.add('bg-navy-900', 'text-slate-200', 'border-white/10');
+            });
+            elem.classList.add('bg-amber-500', 'text-navy-950', 'font-black', 'border-amber-400');
+            elem.classList.remove('bg-navy-900', 'text-slate-200', 'border-white/10');
+            recalculatePlotEstimate();
+        }
+
+        function setSpecTier(rate, tierName, elem) {
+            currentRatePerSft = rate;
+            currentTierName = tierName;
+            document.querySelectorAll('.spec-btn').forEach(b => {
+                b.classList.remove('bg-amber-500/10', 'border-2', 'border-amber-500');
+                b.classList.add('bg-navy-900', 'border', 'border-white/10');
+            });
+            elem.classList.add('bg-amber-500/10', 'border-2', 'border-amber-500');
+            elem.classList.remove('bg-navy-900', 'border-white/10');
+            recalculatePlotEstimate();
+        }
+
+        function recalculatePlotEstimate() {
+            const floorSelect = document.getElementById('floorConfigSelect');
+            if (floorSelect) currentFloors = parseInt(floorSelect.value);
+
+            // Ground footprint roughly 65% of plot area (1 sq.yd = 9 sq.ft)
+            const plotAreaSqFt = currentPlotSize * 9;
+            const groundFootprint = plotAreaSqFt * 0.65;
+            const totalBuiltup = Math.round(groundFootprint * currentFloors);
+
+            // Turnkey calculation
+            const turnkeyBudget = (totalBuiltup * currentRatePerSft) / 100000; // in Lakhs
+            const marketRate = currentRatePerSft * 1.20; // 20% contractor retail margin
+            const marketTotal = (totalBuiltup * marketRate) / 100000;
+            const savings = marketTotal - turnkeyBudget;
+
+            // BOQ Dissections
+            const rccCore = turnkeyBudget * 0.45;
+            const masonry = turnkeyBudget * 0.18;
+            const finishing = turnkeyBudget * 0.37;
+
+            // Update UI elements
+            const estBuiltup = document.getElementById('estBuiltupDisplay');
+            if (estBuiltup) estBuiltup.textContent = `${totalBuiltup.toLocaleString()} sq.ft Total Built-up (${currentPlotSize} Sq.Yd)`;
+
+            const estRccCoreElem = document.getElementById('estRccCore');
+            if (estRccCoreElem) estRccCoreElem.textContent = `₹${rccCore.toFixed(2)} Lakhs`;
+
+            const estMasonryElem = document.getElementById('estMasonry');
+            if (estMasonryElem) estMasonryElem.textContent = `₹${masonry.toFixed(2)} Lakhs`;
+
+            const estFinishingElem = document.getElementById('estFinishing');
+            if (estFinishingElem) estFinishingElem.textContent = `₹${finishing.toFixed(2)} Lakhs`;
+
+            const estMarketCostElem = document.getElementById('estMarketCost');
+            if (estMarketCostElem) estMarketCostElem.textContent = `₹${marketTotal.toFixed(2)} Lakhs`;
+
+            const estTurnkeyElem = document.getElementById('estTurnkeyTotal');
+            if (estTurnkeyElem) estTurnkeyElem.textContent = `₹${turnkeyBudget.toFixed(2)} Lakhs`;
+
+            const estSavingElem = document.getElementById('estCollectiveSaving');
+            if (estSavingElem) estSavingElem.textContent = `₹${savings.toFixed(2)} Lakhs Saved (Wholesale Direct)`;
+        }
+
+        // DYNAMIC ECOSYSTEM SAVINGS CALCULATOR LOGIC (HERO ENGINE)
+        function setupCalculator() {
+            const budgetRange = document.getElementById('budgetRange');
+            const budgetValueDisplay = document.getElementById('budgetValueDisplay');
+            const interiorCheck = document.getElementById('interiorCheck');
+            const applianceCheck = document.getElementById('applianceCheck');
+            const solarCheck = document.getElementById('solarCheck');
+
+            const builderDiscountDisplay = document.getElementById('builderDiscountDisplay');
+            const bankSavingsDisplay = document.getElementById('bankSavingsDisplay');
+            const vendorSavingsDisplay = document.getElementById('vendorSavingsDisplay');
+            const totalSavingsDisplay = document.getElementById('totalSavingsDisplay');
+
+            function calculate() {
+                const budgetLakhs = parseFloat(budgetRange.value);
+
+                // Format display of budget
+                if (budgetLakhs >= 100) {
+                    budgetValueDisplay.textContent = `₹${(budgetLakhs / 100).toFixed(2)} Crore${budgetLakhs > 100 ? 's' : ''}`;
+                } else {
+                    budgetValueDisplay.textContent = `₹${budgetLakhs.toFixed(0)} Lakhs`;
+                }
+
+                // 1. Direct Builder Bulk Negotiation (18% flat average concession)
+                const builderDiscount = budgetLakhs * 0.18;
+
+                // 2. Syndicated Bank Loan & Zero Processing Fees (Approx 3.5% of loan value over lifecycle)
+                const bankSavings = (budgetLakhs * 0.80) * 0.035;
+
+                // 3. Allied Services Savings based on checkboxes
+                let vendorSavings = 0;
+                if (interiorCheck.checked) {
+                    vendorSavings += (budgetLakhs * 0.035);
+                }
+                if (applianceCheck.checked) {
+                    vendorSavings += 2.20;
+                }
+                if (solarCheck.checked) {
+                    vendorSavings += 1.40;
+                }
+
+                const totalSavings = builderDiscount + bankSavings + vendorSavings;
+
+                // Render into DOM
+                builderDiscountDisplay.textContent = formatCurrencyLakhs(builderDiscount);
+                bankSavingsDisplay.textContent = formatCurrencyLakhs(bankSavings);
+                vendorSavingsDisplay.textContent = formatCurrencyLakhs(vendorSavings);
+                totalSavingsDisplay.textContent = formatCurrencyLakhs(totalSavings);
+            }
+
+            function formatCurrencyLakhs(amount) {
+                if (amount >= 100) {
+                    return `₹${(amount / 100).toFixed(2)} Cr`;
+                }
+                return `₹${amount.toFixed(2)} Lakhs`;
+            }
+
+            // Listeners
+            budgetRange.addEventListener('input', calculate);
+            interiorCheck.addEventListener('change', calculate);
+            applianceCheck.addEventListener('change', calculate);
+            solarCheck.addEventListener('change', calculate);
+
+            // Initial trigger
+            calculate();
+        }
+
+        // Form Submission Handlers
+        function handleBuyerSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('buyerTokenForm');
+            const success = document.getElementById('buyerSuccessState');
+            const refElem = document.getElementById('successCohortRef');
+            
+            const randomCode = 'SN-HYD-' + Math.floor(1000 + Math.random() * 9000);
+            if (refElem) refElem.textContent = randomCode;
+
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function handlePlotSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('plotForm');
+            const success = document.getElementById('plotSuccessState');
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function handleNextGenSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('nextGenForm');
+            const success = document.getElementById('nextGenSuccessState');
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function handleDevSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('devForm');
+            const success = document.getElementById('devSuccessState');
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function handleVendorSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('vendorForm');
+            const success = document.getElementById('vendorSuccessState');
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function handleDemandSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('demandForm');
+            const success = document.getElementById('demandSuccessState');
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
